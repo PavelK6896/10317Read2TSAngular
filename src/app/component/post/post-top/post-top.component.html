@@ -1,0 +1,9 @@
+<div class="d-flex justify-content-between">
+    <div class="d-flex flex-row">
+        <div class="subreddit-text"><a class="post-url"
+                                       routerLink="/view-subreddit/{{post.subReadId}}">sub: {{post.subReadName}}</a>
+        </div>
+        <div>Posted by <a class="username" routerLink="/user/{{post.userName}}">nik: {{post.userName}}</a></div>
+    </div>
+    <div>{{post.duration | date:'H:m yyyy.MMM.d'}}</div>
+</div>

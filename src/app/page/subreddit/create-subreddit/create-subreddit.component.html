@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="row">
+        <div class="create-subreddit-container">
+            <form [formGroup]="createSubredditForm" class="post-form">
+                <div class="form-group">
+                    <div class="create-subreddit-heading">Create Subreddit</div>
+                    <hr/>
+                    <input [formControlName]="'title'"
+                           class="form-control"
+                           placeholder="Title"
+                           style="margin-top: 5px"
+                           type="text"
+                    >
+                    <textarea [formControlName]="'description'"
+                              placeholder="Description"
+                              style="width: 100%; margin-top: 5px"
+                              type="text"
+                    ></textarea>
+                    <div>
+                        <div class="float-right" style="margin-top: 5px">
+                            <button (click)="discard()" class="btnDiscard">Discard</button>
+                            <button (click)="createSubreddit()" class="btnCreateSubreddit">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3">
+            <div class="sidebar">
+                <h5 class="guidelines">Posting to Spring Reddit</h5>
+                <hr/>
+                <ul>
+                    <li>Remember the human</li>
+                    <hr/>
+                    <li>Behave like you would in real life</li>
+                    <hr/>
+                    <li>Don't spam</li>
+                    <hr/>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+

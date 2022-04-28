@@ -1,0 +1,17 @@
+<div class="container pt-5">
+    <h5 *ngIf="loadingSub; else loadingTemp">
+        Sub name: {{sub.name}}<br/>description: {{sub.description}}
+    </h5>
+
+    <div *ngIf="loadingPost; else loadingTemp">
+        <div *ngFor="let post of posts">
+            <app-post-tile [post]="post"></app-post-tile>
+        </div>
+    </div>
+
+</div>
+
+
+<ng-template #loadingTemp>
+    <div class="loader-small"></div>
+</ng-template>

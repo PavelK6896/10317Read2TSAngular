@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="">
+        <hr/>
+        <div class="">
+            <form [formGroup]="createPostForm" class="post-form">
+                <div class="form-group">
+                    <div class="create-post-heading">Create Post</div>
+                    <hr/>
+                    <input [formControlName]="'postName'" class="form-control mt-2" placeholder="Title" type="text">
+
+                    <select [formControlName]="'subReadName'" class="form-control mt-2" name="sub">
+                        <option selected hidden>Choose here</option>
+                        <option *ngFor="let subreddit of subRead">{{subreddit.name}}</option>
+                    </select>
+
+                    <div class="form-control h-auto">
+                        <label>Текст поста </label>
+                        <!--                        <quill-editor [formControlName]="'description'" [styles]="{height: '55vh'}"></quill-editor>-->
+                        <textarea></textarea>
+                    </div>
+
+                    <div>
+                        <div class="d-flex justify-content-around" style="margin-top: 5px;">
+                            <button (click)="discardPost()" class="btnDiscard" id="discardPost">Discard</button>
+                            <button (click)="createPost()" class="btnCreatePost" id="createPost"
+                                    [disabled]="createPostForm.invalid">Create
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

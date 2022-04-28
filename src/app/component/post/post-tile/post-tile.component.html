@@ -1,0 +1,20 @@
+<div class="row p-1 post">
+    <app-vote-button [post]="post"></app-vote-button>
+    <div class="col">
+        <app-post-top [post]="post"></app-post-top>
+        <hr/>
+        <div style="max-width: 35vw; max-height: 10vh; overflow: hidden;">
+            <a (click)="goToPost(post.id)" class="post-text">{{post.postName}}</a>
+        </div>
+
+        <hr/>
+        <div class="d-flex justify-content-between">
+            <a class="btnCommments" role="button" routerLink="/view-post/{{post.id}}">
+                Comments {{post.commentCount}}
+            </a>
+            <button (click)="goToPost(post.id)" class="loginButton">
+                Read post
+            </button>
+        </div>
+    </div>
+</div>

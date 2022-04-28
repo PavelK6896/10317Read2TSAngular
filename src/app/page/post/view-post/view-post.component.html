@@ -1,0 +1,70 @@
+<div *ngIf="loadingPost; else loadingC " class="container">
+    <div class="row">
+        <hr/>
+        <div class="col-md-9">
+            <div class="row post">
+                <div class="col-md-1">
+                    <app-vote-button [post]="this.post"></app-vote-button>
+                </div>
+                <div class="col-md-11">
+                    <app-post-top [post]="post"></app-post-top>
+                    <hr/>
+
+                    <div class="post-text text-center p-1" style="width: 35vw;">Title: {{post.postName}}
+                    </div>
+
+                    <br/>
+                    <div class="p-5">
+                        <!--                        <quill-view-html [content]="post.description"></quill-view-html>-->
+                        <textarea></textarea>
+                    </div>
+                    <br/>
+
+                    <div class="post-comment">
+                        <form [formGroup]="commentForm">
+                            <div class="form-group">
+                                <textarea [formControlName]="'text'" class="form-control"
+                                          placeholder="Your thoughts?"></textarea>
+                            </div>
+                            <button
+                                    class="loginButton float-right"
+                                    type="submit"
+                                    (click)="postComment()"
+                            >Comment
+                            </button>
+
+                        </form>
+                    </div>
+
+                    <hr/>
+
+                    <div *ngIf="loadingComment; else loadingC">
+                        <div *ngFor="let comment of comments">
+                            <div class="comment">
+                                <div class="username">
+                                    <a routerLink="/user/">{{comment.username}}</a>
+                                </div>
+                                <div>
+                                    <p>{{comment.duration}}</p>
+                                </div>
+                                <strong>{{comment.text}}</strong>
+                            </div>
+                            <hr/>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <app-side-bar></app-side-bar>
+            <app-subreddit-side-bar></app-subreddit-side-bar>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #loadingC>
+    <p class="text-center">loading...</p>
+</ng-template>
