@@ -27,7 +27,7 @@ import { PostTileComponent } from "./component/post/post-tile/post-tile.componen
 
 
 // import { quillModules } from "./utill/quill1";
-// import { ToastrModule } from "ngx-toastr";
+import { ToastrModule } from "ngx-toastr";
 // import { QuillModule } from "ngx-quill";
 // import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -58,7 +58,7 @@ import { PostTileComponent } from "./component/post/post-tile/post-tile.componen
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    // ToastrModule.forRoot(),  //для анимации тостар
+    ToastrModule.forRoot(),  //для анимации тостар
     // FontAwesomeModule, //иконки
     // QuillModule.forRoot({modules: quillModules}),
     // NgbModule

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-// import {ToastrService} from "ngx-toastr";
+import { ToastrService } from "ngx-toastr";
 import { Subscription } from "rxjs";
 import { SignupRequestPayload } from "../../../utill/interface1";
 import { AuthService } from "../../../service/auth.service";
@@ -21,7 +21,7 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService,
               private router: Router,
-              // private toastrService: ToastrService
+              private toastrService: ToastrService
   ) {
     logUtil("SignupComponent!")
     this.signUpRequestPayload = {
@@ -60,18 +60,18 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.signUpRequestPayload.password = this.signUpForm.get('password')?.value;
 
     if (this.signUpRequestPayload.password == "ds#@23SD") {
-      // this.toastrService.error("fail ds#@23SD");
+      this.toastrService.error("fail ds#@23SD");
       return
     }
 
     this.signUpSubscription = this.authService.signUp(this.signUpRequestPayload)
       .subscribe(data => {
         logUtil("signUp+ ", data)
-        // this.toastrService.success('success');
+        this.toastrService.success('success');
         this.router.navigate(['/login'], {queryParams: {registered: 'true'}});
       }, error => {
         logUtil("signUp- ", error)
-        // this.toastrService.error(error.error);
+        this.toastrService.error(error.error);
       });
   }
 

@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SignupComponent } from './signup.component';
 import { HttpClient } from "@angular/common/http";
 import { NavigationExtras, Router } from "@angular/router";
-// import { ToastrService } from "ngx-toastr";
+import { ToastrService } from "ngx-toastr";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { of } from "rxjs";
 import { By } from "@angular/platform-browser";
@@ -70,14 +70,14 @@ describe('SignupComponent 4', () => {
     let router = TestBed.inject(Router)
     let toastrService = TestBed.inject(ToastrService)
     let spyAuth = spyOn(authService, 'signUp').and.returnValue(of(true))
-    // let spyToastrService = spyOn(toastrService, 'success')
+    let spyToastrService = spyOn(toastrService, 'success')
     let spyRouter = spyOn(router, 'navigate')
 
     let debugElement = fixture.debugElement.query(By.css('.sign-up'));
     fixture.detectChanges();
     debugElement.triggerEventHandler('click', null)
 
-    // expect(spyToastrService).toHaveBeenCalled()
+    expect(spyToastrService).toHaveBeenCalled()
     expect(spyAuth).toHaveBeenCalled()
     expect(spyRouter).toHaveBeenCalled()
   });

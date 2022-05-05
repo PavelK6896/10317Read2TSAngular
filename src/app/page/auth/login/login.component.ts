@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription, throwError } from "rxjs";
-// import {ToastrService} from "ngx-toastr";
+import { ToastrService } from "ngx-toastr";
 import { LoginRequestPayload } from "../../../utill/interface1";
 import { AuthService } from "../../../service/auth.service";
 import { logUtil } from "../../../utill/log1";
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
-              // private toastrService: ToastrService
+              private toastrService: ToastrService
   ) {
     logUtil("LoginComponent!")
     this.loginRequestPayload = {
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe(params => {
         logUtil("queryParams+ ", params)
         if (params['registered'] !== undefined && params['registered'] === 'true') {
-          // this.toastrService.success('Sign up Successful');
+          this.toastrService.success('Sign up Successful');
           this.registerSuccessMessage = 'Please Check your inbox for activation email '
             + 'activate your account before you Login!';
         }
@@ -73,16 +73,16 @@ export class LoginComponent implements OnInit, OnDestroy {
         logUtil("login+ ", data)
         this.isError = false;
         this.router.navigateByUrl('');
-        // this.toastrService.success('Login Successful', 'Info', {
-        //     timeOut: 500,
-        // });
+        this.toastrService.success('Login Successful', 'Info', {
+          timeOut: 500,
+        });
       }, error => {
         logUtil("login- ", error)
         this.isError = true;
 
-        // this.toastrService.error('Login Error', 'Error', {
-        //     timeOut: 1000,
-        // });
+        this.toastrService.error('Login Error', 'Error', {
+          timeOut: 1000,
+        });
         throwError(error);
       });
   }
