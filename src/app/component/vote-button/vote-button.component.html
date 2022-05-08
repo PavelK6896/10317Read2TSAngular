@@ -1,19 +1,39 @@
 <div class="col-md-1 p-1">
     <div class="d-flex flex-column votebox">
-        <div class="p-2">
-            <button (click)="upVotePost()">
-                <!--                     [icon]="faArrowUp"-->
-                [style.color]="post.vote == up ? 'green':'' "
-                class="upvote">
-            </button>
+        <div (click)="upVotePost()" [style.color]="post.vote == up ? 'green':'' " class="p-2 upvote">
+            <!--            <button (click)="upVotePost()">-->
+            <!--                &lt;!&ndash;                     [icon]="faArrowUp"&ndash;&gt;-->
+            <!--                [style.color]="post.vote == up ? 'green':'' "-->
+            <!--                class="upvote">-->
+            <!--            </button>-->
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
+                 class="bi bi-arrow-up-short" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                      d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5z"/>
+            </svg>
+
+            <!--            <fa-icon (click)="upVotePost()"-->
+            <!--                     [icon]="faArrowUp"-->
+            <!--                     [style.color]="post.vote == up ? 'green':'' "-->
+            <!--                     class="upvote">-->
+            <!--            </fa-icon>-->
+
         </div>
         <div class="p-2 votecount">{{post.voteCount}}</div>
-        <div class="p-2">
-            <button (click)="downVotePost()">
-                <!--                     [icon]="faArrowDown"-->
-                [style.color]="post.vote == down ? 'red':''"
-                class="downvote">
-            </button>
+        <div (click)="downVotePost()" [style.color]="post.vote == down ? 'red':''" class="p-2 downvote">
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
+                 class="bi bi-arrow-down-short" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                      d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z"/>
+            </svg>
+
+            <!--            <button (click)="downVotePost()">-->
+            <!--                &lt;!&ndash;                     [icon]="faArrowDown"&ndash;&gt;-->
+            <!--                -->
+            <!--                class="downvote">-->
+            <!--            </button>-->
         </div>
     </div>
 </div>

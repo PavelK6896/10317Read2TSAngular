@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HeaderComponent } from "./component/header/header.component";
@@ -26,11 +26,10 @@ import { SubredditSideBarComponent } from "./component/subreddit-side-bar/subred
 import { PostTileComponent } from "./component/post/post-tile/post-tile.component";
 
 
-// import { quillModules } from "./utill/quill1";
 import { ToastrModule } from "ngx-toastr";
-// import { QuillModule } from "ngx-quill";
-// import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { quillModules } from "./utill/quillConfig";
+import { QuillModule } from "ngx-quill";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
@@ -58,10 +57,10 @@ import { ToastrModule } from "ngx-toastr";
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),  //для анимации тостар
-    // FontAwesomeModule, //иконки
-    // QuillModule.forRoot({modules: quillModules}),
-    // NgbModule
+    ToastrModule.forRoot(),
+    QuillModule.forRoot({modules: quillModules}),
+    NgbModule,
+    FormsModule
   ],
   providers: [
     {

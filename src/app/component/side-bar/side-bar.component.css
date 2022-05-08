@@ -10,33 +10,17 @@
     border-radius: 4px;
     padding: 10px;
     margin-top: 10px;
-    margin-bottom: 10px;
 }
 
 .btnCreatePost, .btnCreateSubreddit {
-    background-color: #0079D3;
-    border-color: #0079D3;
-    color: aliceblue;
-    fill: #0079D3;
-    border: 1px solid;
-    border-radius: 4px;
-    text-align: center;
-    letter-spacing: 1px;
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: .5px;
-    line-height: 24px;
-    padding: 3px 16px;
-    opacity: 1;
+
     width: 288px;
     height: 34px;
+
 }
 
 .btnCreateSubreddit {
     margin-top: 5px;
-    color: #0079D3;
-    background-color: transparent;
 }
 
 .sidebar > ul > li {

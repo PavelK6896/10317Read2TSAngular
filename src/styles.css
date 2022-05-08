@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~quill/dist/quill.bubble.css';
+@import '~quill/dist/quill.snow.css';
+
+
+.buttonNoPainted, .buttonPainted {
+    background-color: transparent;
+    color: #0079D3;
+    fill: #0079D3;
+    border: 1px solid #0079D3;
+    border-radius: 4px;
+    box-sizing: border-box;
+    text-align: center;
+    letter-spacing: 1px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 24px;
+    padding: 3px 16px;
+    opacity: 1;
+}
+
+.buttonPainted {
+    background-color: #0079D3;
+    border-color: #0079D3;
+    color: aliceblue;
+}
+
+.buttonPainted:hover {
+    opacity: 0.6;
+}
+
+.buttonNoPainted:hover {
+    opacity: 0.6;
+    background-color: #0079D3;
+    color: aliceblue;
+}

@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/10317-read2-tsangular'),
+      dir: require('path').join(__dirname, './coverage/10317-read2-ts-angular'),
       subdir: '.',
       reporters: [
         { type: 'html' },
