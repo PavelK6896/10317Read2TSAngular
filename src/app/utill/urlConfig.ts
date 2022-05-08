@@ -2,7 +2,7 @@ import { environment } from "../../environments/environment.prod";
 
 const read1 = environment.URL + '/api/read2'
 
-export const url1 = {
+export const urlConfig = {
 
   getAllSubreddits: read1 + '/api/subreddit',
   getSubredditsId: read1 + '/api/subreddit',

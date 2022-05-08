@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostResponseDto } from "../../../utill/interface1";
-import { Subscription, throwError } from "rxjs";
+import { Subscription } from "rxjs";
 import { logUtil } from "../../../utill/log1";
 import { PostService } from "../../../service/post.service";
 import { ActivatedRoute } from "@angular/router";
@@ -18,27 +18,25 @@ export class UserViewPostComponent implements OnInit {
   name!: string
   postLength!: number
 
-
   constructor(private postService: PostService,
               private activatedRoute: ActivatedRoute) {
     logUtil("UserViewPostComponent!")
   }
 
-
   ngOnInit(): void {
     this.name = this.activatedRoute.snapshot.params["name"];
     this.loadingPost = false
     this.postsSubscription = this.postService.getAllPostsByUser(this.name)
-      .subscribe(data => {
-        logUtil("getAllPostsBySub+ ", data)
-        this.posts = data;
-        this.postLength = data.length;
-        this.loadingPost = true
-      }, error => {
-        logUtil("getAllPostsBySub- ", error)
-        throwError(error);
+      .subscribe({
+        next: data => {
+          logUtil("getAllPostsBySub+ ", data)
+          this.posts = data;
+          this.postLength = data.length;
+          this.loadingPost = true
+        }, error: error => {
+          logUtil("getAllPostsBySub- ", error)
+        }
       });
   }
-
 
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { url1 } from "../utill/url1";
+import { urlConfig } from "../utill/urlConfig";
 import { SubredditModel } from "../utill/class1";
 
 @Injectable({
@@ -13,14 +13,14 @@ export class SubredditService {
   }
 
   getAllSubreddits(): Observable<Array<SubredditModel>> {
-    return this.http.get<Array<SubredditModel>>(url1.getAllSubreddits);
+    return this.http.get<Array<SubredditModel>>(urlConfig.getAllSubreddits);
   }
 
   getSubredditsId(subId: number): Observable<SubredditModel> {
-    return this.http.get<SubredditModel>(url1.getSubredditsId + '/' + subId);
+    return this.http.get<SubredditModel>(urlConfig.getSubredditsId + '/' + subId);
   }
 
   createSubreddit(subredditModel: SubredditModel): Observable<SubredditModel> {
-    return this.http.post<SubredditModel>(url1.createSubreddit, subredditModel);
+    return this.http.post<SubredditModel>(urlConfig.createSubreddit, subredditModel);
   }
 }

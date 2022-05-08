@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, filter, switchMap, take } from 'rxjs/operators';
 import { AuthService } from "../service/auth.service";
 import { logUtil } from "../utill/log1";
@@ -33,7 +33,7 @@ export class TokenInterceptor implements HttpInterceptor {
               if (error instanceof HttpErrorResponse && error.status === 403) {
                 return this.handleAuthErrors(req, next);
               } else {
-                return throwError(error);
+                return of(error)
               }
             }
           ));
@@ -68,7 +68,7 @@ export class TokenInterceptor implements HttpInterceptor {
       return this.refreshTokenSubject.pipe(
         filter(result => result !== null),
         take(1),
-        switchMap((res) => {
+        switchMap(() => {
             return next.handle(this.addToken(req, this.authService.getJwtToken()))
           }
         )

@@ -2,7 +2,6 @@
     margin-top: 10px;
     --post-line-color: #ccc;
     border: 1px solid #ccc;
-    margin-top: 10px;
     margin-bottom: 10px;
     overflow: hidden;
     background-color: rgba(255, 255, 255, 0.8);
@@ -23,17 +22,15 @@
 
 .btnCreateSubreddit {
     background-color: #0079D3;
-    border-color: #0079D3;
     color: aliceblue;
     fill: #0079D3;
-    border: 1px solid;
+    border: 1px solid #0079D3;
     border-radius: 4px;
     text-align: center;
     letter-spacing: 1px;
     text-decoration: none;
     font-size: 12px;
     font-weight: 700;
-    letter-spacing: .5px;
     line-height: 24px;
     text-transform: uppercase;
     padding: 3px 16px;
@@ -51,7 +48,6 @@
     text-decoration: none;
     font-size: 12px;
     font-weight: 700;
-    letter-spacing: .5px;
     line-height: 24px;
     text-transform: uppercase;
     padding: 3px 16px;
@@ -84,5 +80,4 @@
     border-radius: 4px;
     padding: 5px;
     margin-top: 10px;
-    margin-bottom: 10px;
 }

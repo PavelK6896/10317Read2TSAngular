@@ -33,7 +33,7 @@ describe('AuthGuard 6', () => {
     let authService = TestBed.inject(AuthService)
     let spyPostService = spyOn(authService, 'isLoggedIn').and.returnValue(false)
     let spyRouter = spyOn(router, 'navigateByUrl')
-    let canAct = guard.canActivate(null, null)
+    let canAct = guard.canActivate()
     expect(spyPostService).toHaveBeenCalled()
     expect(spyRouter).toHaveBeenCalled()
     expect(canAct).toBe(true)

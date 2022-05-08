@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
-import { Subscription, throwError } from "rxjs";
+import { Subscription } from "rxjs";
 import { PostService } from "../../service/post.service";
 import { logUtil } from "../../utill/log1";
 import { PostResponseDto } from "../../utill/interface1";
@@ -24,14 +24,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loadingPost = false
     this.getAllPostsSubscription = this.postService.getAllPosts()
-      .subscribe(data => {
-        logUtil("getAllPosts+ ", data)
-        this.posts = data;
-        this.loadingPost = true
-      }, error => {
-        logUtil("getAllPosts- ", error)
-        if (error.status != 404) {
-          throwError(error);
+      .subscribe({
+        next: data => {
+          logUtil("getAllPosts+ ", data)
+          this.posts = data;
+          this.loadingPost = true
+        }, error: error => {
+          logUtil("getAllPosts- ", error)
         }
       });
   }

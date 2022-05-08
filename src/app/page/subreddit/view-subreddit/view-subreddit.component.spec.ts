@@ -19,7 +19,7 @@ class ActivatedRouteStub {
   constructor() {
     this.snapshot = new ActivatedRouteSnapshot()
     this.snapshot.params = of({id: subId})
-    this.snapshot.params.id = 50
+    this.snapshot.params["id"] = 50
   }
 }
 
@@ -85,7 +85,7 @@ describe('ViewSubredditComponent 21', () => {
     expect(component.subId).toBe(subId)
 
     let debugElement = fixture.debugElement.query(By.css('h5'));
-    expect(debugElement).not.toBe(null)
+    expect(debugElement).not.toBeNull()
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('app-post-tile')).not.toBe(null);
   });

@@ -6,26 +6,28 @@
                 <div class="card-header" style="text-align: center"><h4>Login</h4></div>
                 <div class="card-body">
                     <form [formGroup]="loginForm">
-                        <div class="form-group row">
+                        <div class="form-group row mt-4">
                             <label class="col-md-4 col-form-label text-md-right" for="user_name">Username</label>
                             <div class="col-md-6">
                                 <input [formControlName]="'username'" autofocus class="form-control" id="user_name"
                                        name="user_name"
                                        required autocomplete="username"
                                        type="text">
-                                <span *ngIf="!loginForm.get('username')?.valid && loginForm.get('username')?.touched">
+                                <span style="position: absolute; max-width:  16rem"
+                                      *ngIf="!loginForm.get('username')?.valid && loginForm.get('username')?.touched">
                                    Please provide a valid username autocomplete="username"
                                 </span>
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row" style="padding-top: 4rem;">
                             <label class="col-md-4 col-form-label text-md-right" for="password">Password</label>
                             <div class="col-md-6">
                                 <input [formControlName]="'password'" class="form-control" id="password" name="password"
                                        required autocomplete="current-password"
                                        type="password">
-                                <span *ngIf="!loginForm.get('password')?.valid && loginForm.get('password')?.touched">
+                                <span style="position: absolute; max-width:  16rem"
+                                      *ngIf="!loginForm.get('password')?.valid && loginForm.get('password')?.touched">
                                   Password cannot be empty
                                 </span>
                             </div>
@@ -33,11 +35,11 @@
 
                         <div class="col-md-6 offset-md-4">
                             <div class="d-flex flex-column align-content-end justify-content-end align-items-end">
-                                <button (click)="login()" class="buttonNoPainted" type="submit"
+                                <button (click)="login()" class="buttonNoPainted mt-4" type="submit"
                                         [disabled]="loginForm.invalid">Log in
                                 </button>
                                 <br/>
-                                <div>New user? <a routerLink="/sign-up">Sign up</a></div>
+                                <div>New user ? <a routerLink="/sign-up">Sign up</a></div>
                             </div>
                         </div>
                         <div *ngIf='this.isError' class="login-failed">

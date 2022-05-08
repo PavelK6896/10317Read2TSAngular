@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription, throwError } from "rxjs";
+import { Subscription } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
 import { SubredditModel } from "../../../utill/class1";
 import { PostService } from "../../../service/post.service";
@@ -34,24 +34,26 @@ export class ViewSubredditComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subId = this.activatedRoute.snapshot.params['id'];
     this.postsSubscription = this.postService.getAllPostsBySub(this.subId)
-      .subscribe(data => {
-        logUtil("getAllPostsBySub+ ", data)
-        this.posts = data;
-        this.postLength = data.length;
-        this.loadingPost = true
-      }, error => {
-        logUtil("getAllPostsBySub- ", error)
-        throwError(error);
+      .subscribe({
+        next: data => {
+          logUtil("getAllPostsBySub+ ", data)
+          this.posts = data;
+          this.postLength = data.length;
+          this.loadingPost = true
+        }, error: error => {
+          logUtil("getAllPostsBySub- ", error)
+        }
       });
 
     this.subSubscription = this.subredditService.getSubredditsId(this.subId)
-      .subscribe(data => {
-        logUtil("getSubredditsId+ ", data)
-        this.sub = data
-        this.loadingSub = true
-      }, error => {
-        logUtil("getSubredditsId- ", error)
-        throwError(error);
+      .subscribe({
+        next: data => {
+          logUtil("getSubredditsId+ ", data)
+          this.sub = data
+          this.loadingSub = true
+        }, error: error => {
+          logUtil("getSubredditsId- ", error)
+        }
       })
   }
 

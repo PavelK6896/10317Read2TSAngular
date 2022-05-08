@@ -2,7 +2,6 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { throwError } from "rxjs";
 import { CommentPayload } from "../../../utill/class1";
 import { PostService } from "../../../service/post.service";
 import { CommentService } from "../../../service/comment.service";
@@ -51,7 +50,7 @@ export class ViewPostComponent implements OnInit {
   postComment() {
 
     if (!this.authService.isLoggedIn()) {
-      this.router.navigateByUrl('login')
+      this.router.navigateByUrl('login').then(r => logUtil("r- ", r))
       return;
     }
 
@@ -60,39 +59,42 @@ export class ViewPostComponent implements OnInit {
       return
     }
     this.commentService.postComment(this.commentPayload)
-      .subscribe(data => {
-        logUtil("postComment+ ", data)
-        this.commentForm.get('text')?.setValue(null);
-        this.getCommentsForPost();
-      }, error => {
-        logUtil("postComment- ", error)
-        throwError(error);
+      .subscribe({
+        next: data => {
+          logUtil("postComment+ ", data)
+          this.commentForm.get('text')?.setValue(null);
+          this.getCommentsForPost();
+        }, error: error => {
+          logUtil("postComment- ", error)
+        }
       })
   }
 
   private getPostById() {
     this.loadingPost = false;
     this.postService.getPostById(this.postId)
-      .subscribe(data => {
-        logUtil("getPostById+ ", data)
-        this.post = data;
-        this.loadingPost = true;
-      }, error => {
-        logUtil("getPostById- ", error)
-        throwError(error);
+      .subscribe({
+        next: data => {
+          logUtil("getPostById+ ", data)
+          this.post = data;
+          this.loadingPost = true;
+        }, error: error => {
+          logUtil("getPostById- ", error)
+        }
       });
   }
 
   private getCommentsForPost() {
     this.loadingComment = false
     this.commentService.getAllCommentsForPost(this.postId)
-      .subscribe(data => {
-        logUtil("getAllCommentsForPost+ ", data)
-        this.comments = data;
-        this.loadingComment = true
-      }, error => {
-        logUtil("getAllCommentsForPost- ", error)
-        throwError(error);
+      .subscribe({
+        next: data => {
+          logUtil("getAllCommentsForPost+ ", data)
+          this.comments = data;
+          this.loadingComment = true
+        }, error: error => {
+          logUtil("getAllCommentsForPost- ", error)
+        }
       });
   }
 }

@@ -9,7 +9,7 @@
 
                 <div class="card-body">
                     <form [formGroup]="signUpForm">
-                        <div class="form-group row">
+                        <div class="form-group row mt-2">
                             <label class="col-md-4 col-form-label text-md-right" for="email_address">E-Mail
                                 Address</label>
                             <div class="col-md-6">
@@ -25,7 +25,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row mt-2">
                             <label class="col-md-4 col-form-label text-md-right">User Name</label>
                             <div class="col-md-6">
                                 <input [formControlName]="'username'" autofocus
@@ -40,7 +40,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row mt-2">
                             <label class="col-md-4 col-form-label text-md-right" for="password">Password</label>
                             <div class="col-md-6">
                                 <input [formControlName]="'password'" class="form-control" id="password" name="password"
@@ -56,7 +56,7 @@
 
                         <div class="col-md-6 offset-md-4">
                             <div class="d-flex flex-column align-content-end justify-content-end align-items-end">
-                                <button (click)="signUp()" class="buttonNoPainted" type="submit"
+                                <button (click)="signUp()" class="buttonNoPainted mt-4" type="submit"
                                         [disabled]="signUpForm.invalid">Sign up
                                 </button>
                                 <br/>

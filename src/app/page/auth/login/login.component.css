@@ -4,8 +4,7 @@
 
 .login-failed, .register-success {
     text-align: center;
-    margin: auto;
-    margin-top: 10px;
+    margin: 10px auto auto;
     border: 2px solid black;
     width: 65%;
     background-color: red;

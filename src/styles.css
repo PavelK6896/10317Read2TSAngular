@@ -26,11 +26,17 @@
     color: aliceblue;
 }
 
-.buttonPainted:hover {
+.buttonPainted:disabled, .buttonNoPainted:disabled {
+    background-color: #bcbcbe;
+    color: #586c7a;
+    border-color: #89a1b2;
+}
+
+.buttonPainted:hover:enabled {
     opacity: 0.6;
 }
 
-.buttonNoPainted:hover {
+.buttonNoPainted:hover:enabled {
     opacity: 0.6;
     background-color: #0079D3;
     color: aliceblue;

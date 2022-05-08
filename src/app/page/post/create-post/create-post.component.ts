@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { Subscription, throwError } from "rxjs";
+import { Subscription } from "rxjs";
 import { CreatePostPayload, SubredditModel } from "../../../utill/class1";
 import { PostService } from "../../../service/post.service";
 import { SubredditService } from "../../../service/subreddit.service";
@@ -40,12 +40,13 @@ export class CreatePostComponent implements OnInit, OnDestroy {
     });
 
     this.getAllSubReadSub = this.subredditService.getAllSubreddits()
-      .subscribe((data) => {
-        logUtil("getAllSubreddits+ ", data)
-        this.subRead = data;
-      }, error => {
-        logUtil("getAllSubreddits- ", error)
-        throwError(error);
+      .subscribe({
+        next: (data) => {
+          logUtil("getAllSubreddits+ ", data)
+          this.subRead = data;
+        }, error: error => {
+          logUtil("getAllSubreddits- ", error)
+        }
       });
 
   }
@@ -65,18 +66,19 @@ export class CreatePostComponent implements OnInit, OnDestroy {
     this.postPayload.description = this.createPostForm.get('description')?.value;
 
     this.createPostSub = this.postService.createPost(this.postPayload)
-      .subscribe((data) => {
-        logUtil("createPost+ ", data)
-        this.router.navigateByUrl('');
+      .subscribe({
+        next: (data) => {
+          logUtil("createPost+ ", data)
+          this.router.navigateByUrl('');
 
-      }, error => {
-        logUtil("createPost- ", error)
-        throwError(error);
+        }, error: error => {
+          logUtil("createPost- ", error)
+        }
       })
   }
 
   discardPost() {
-    this.router.navigateByUrl('');
+    this.router.navigateByUrl('').then(r => logUtil("r- ", r));
   }
 
 

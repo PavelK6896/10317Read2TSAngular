@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { map, tap } from "rxjs/operators";
 import { LoginRequestPayload, LoginResponse, SignupRequestPayload } from "../utill/interface1";
-import { url1 } from "../utill/url1";
+import { urlConfig } from "../utill/urlConfig";
 import { logUtil } from "../utill/log1";
 
 
@@ -25,11 +25,11 @@ export class AuthService {
 
   signUp(signUpRequestPayload: SignupRequestPayload): Observable<any> {
     return this.httpClient
-      .post(url1.signUp, signUpRequestPayload, {responseType: 'text'});
+      .post(urlConfig.signUp, signUpRequestPayload, {responseType: 'text'});
   }
 
   login(loginRequestPayload: LoginRequestPayload): Observable<boolean> {
-    return this.httpClient.post<LoginResponse>(url1.login, loginRequestPayload)
+    return this.httpClient.post<LoginResponse>(urlConfig.login, loginRequestPayload)
       .pipe(map(data => {
         localStorage.setItem('authenticationToken', data.authenticationToken);
         localStorage.setItem('username', data.username);
@@ -43,7 +43,7 @@ export class AuthService {
 
 
   refreshToken(): Observable<any> {
-    return this.httpClient.post<LoginResponse>(url1.refreshToken, this.refreshTokenPayload)
+    return this.httpClient.post<LoginResponse>(urlConfig.refreshToken, this.refreshTokenPayload)
       .pipe(tap(response => {
           logUtil("refreshToken!pipe+1+ ", response)
           localStorage.removeItem('authenticationToken');
@@ -55,7 +55,7 @@ export class AuthService {
   }
 
   logout() {
-    this.httpClient.post(url1.logout, this.refreshTokenPayload, {responseType: 'text'})
+    this.httpClient.post(urlConfig.logout, this.refreshTokenPayload, {responseType: 'text'})
       .subscribe(data => {
         logUtil("logout+ ", data)
       }, error => {

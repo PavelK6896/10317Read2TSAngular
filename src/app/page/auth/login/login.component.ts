@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Subscription, throwError } from "rxjs";
+import { Subscription } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { LoginRequestPayload } from "../../../utill/interface1";
 import { AuthService } from "../../../service/auth.service";
@@ -39,18 +39,19 @@ export class LoginComponent implements OnInit, OnDestroy {
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
     });
-
     this.queryParamsSubscription = this.activatedRoute.queryParams
-      .subscribe(params => {
-        logUtil("queryParams+ ", params)
-        if (params['registered'] !== undefined && params['registered'] === 'true') {
-          this.toastrService.success('Sign up Successful');
-          this.registerSuccessMessage = 'Please Check your inbox for activation email '
-            + 'activate your account before you Login!';
+      .subscribe({
+        next: params => {
+          logUtil("queryParams+ ", params)
+          if (params['registered'] !== undefined && params['registered'] === 'true') {
+            this.toastrService.success('Sign up Successful');
+            this.registerSuccessMessage = 'Please Check your inbox for activation email '
+              + 'activate your account before you Login!';
+          }
+        },
+        error: error => {
+          logUtil("queryParams- ", error)
         }
-      }, error => {
-        logUtil("queryParams- ", error)
-
       });
   }
 
@@ -69,21 +70,22 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginRequestPayload.password = this.loginForm.get('password')?.value;
 
     this.loginSubscription = this.authService.login(this.loginRequestPayload)
-      .subscribe(data => {
-        logUtil("login+ ", data)
-        this.isError = false;
-        this.router.navigateByUrl('');
-        this.toastrService.success('Login Successful', 'Info', {
-          timeOut: 500,
-        });
-      }, error => {
-        logUtil("login- ", error)
-        this.isError = true;
-
-        this.toastrService.error('Login Error', 'Error', {
-          timeOut: 1000,
-        });
-        throwError(error);
+      .subscribe({
+        next: data => {
+          logUtil("login+ ", data)
+          this.isError = false;
+          this.router.navigateByUrl('').then(r => logUtil("r+ ", r));
+          this.toastrService.success('Login Successful', 'Info', {
+            timeOut: 500,
+          });
+        },
+        error: error => {
+          logUtil("login- ", error)
+          this.isError = true;
+          this.toastrService.error('Login Error', 'Error', {
+            timeOut: 1000,
+          });
+        }
       });
   }
 }

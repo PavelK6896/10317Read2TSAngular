@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { throwError } from "rxjs";
 import { SubredditModel } from "../../../utill/class1";
 import { SubredditService } from "../../../service/subreddit.service";
 import { logUtil } from "../../../utill/log1";
@@ -13,7 +12,7 @@ import { ToastrService } from "ngx-toastr";
   templateUrl: './create-subreddit.component.html',
   styleUrls: ['./create-subreddit.component.css']
 })
-export class CreateSubredditComponent implements OnInit {
+export class CreateSubredditComponent {
   createSubredditForm: FormGroup;
   subredditModel: SubredditModel;
   title = new FormControl('');
@@ -34,11 +33,8 @@ export class CreateSubredditComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-  }
-
   discard() {
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/').then(r => logUtil("r- ", r));
   }
 
   createSubreddit() {
@@ -46,20 +42,21 @@ export class CreateSubredditComponent implements OnInit {
     this.subredditModel.description = this.createSubredditForm.get('description')?.value
 
     this.subredditService.createSubreddit(this.subredditModel)
-      .subscribe(data => {
-        logUtil("createSubreddit+ ", data)
-        this.toastrService.success('Created', 'Info', {
-          timeOut: 500,
-        });
-        this.router.navigateByUrl('/list-subreddits');
-      }, error => {
-        logUtil("createSubreddit- ", error)
-        if (error.status == 400) {
-          this.toastrService.error('Value too long', 'Info', {
+      .subscribe({
+        next: data => {
+          logUtil("createSubreddit+ ", data)
+          this.toastrService.success('Created', 'Info', {
             timeOut: 500,
           });
+          this.router.navigateByUrl('/list-subreddits');
+        }, error: error => {
+          logUtil("createSubreddit- ", error)
+          if (error.status == 400) {
+            this.toastrService.error('Value too long', 'Info', {
+              timeOut: 500,
+            });
+          }
         }
-        throwError(error);
       })
   }
 }
