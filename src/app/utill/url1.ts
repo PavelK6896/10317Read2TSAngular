@@ -1,6 +1,6 @@
 import { environment } from "../../environments/environment.prod";
 
-const read1 = environment.URL + '/api/read1'
+const read1 = environment.URL + '/api/read2'
 
 export const url1 = {
 
