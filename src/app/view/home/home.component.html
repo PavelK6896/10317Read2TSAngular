@@ -1,22 +1,18 @@
-<div class="reddit-body">
-    <div class="container">
-        <div class="row">
-            <hr/>
-            <div class="col-md-9">
-                <div *ngIf="loadingPost; else loadingTemp">
-                    <div *ngFor="let post of posts">
-                        <app-post-tile [post]="post"></app-post-tile>
-                    </div>
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-9">
+            <div *ngIf="loadingPost; else loadingTemp">
+                <div *ngFor="let post of posts">
+                    <app-post-tile [post]="post"></app-post-tile>
                 </div>
             </div>
-            <div class="col-md-3">
-                <app-side-bar></app-side-bar>
-                <app-subreddit-side-bar></app-subreddit-side-bar>
-            </div>
+        </div>
+        <div class="col-md-3">
+            <app-side-bar></app-side-bar>
+            <app-subreddit-side-bar></app-subreddit-side-bar>
         </div>
     </div>
 </div>
-
 
 <ng-template #loadingTemp>
     <div class="loader-small"></div>

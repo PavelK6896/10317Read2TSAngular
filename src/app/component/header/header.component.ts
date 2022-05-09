@@ -7,7 +7,8 @@ import { logUtil } from "../../utill/logUtill";
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+  // host: {'class': 'navbar navbar-expand-md navbar-dark fixed-top '}
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
