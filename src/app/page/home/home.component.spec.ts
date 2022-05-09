@@ -10,7 +10,6 @@ import { PostResponseDto } from "../../utill/interface1";
 describe('HomeComponent 9', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
-  let postService: PostService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

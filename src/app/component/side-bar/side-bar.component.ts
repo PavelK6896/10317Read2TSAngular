@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from "@angular/router";
 import { logUtil } from "../../utill/log1";
 
@@ -7,21 +7,18 @@ import { logUtil } from "../../utill/log1";
   templateUrl: './side-bar.component.html',
   styleUrls: ['./side-bar.component.css']
 })
-export class SideBarComponent implements OnInit {
+export class SideBarComponent {
 
   constructor(private router: Router) {
     logUtil("SideBarComponent!")
   }
 
-  ngOnInit() {
-  }
-
   goToCreatePost() {
-    this.router.navigateByUrl('/create-post');
+    this.router.navigateByUrl('/create-post').then(r => logUtil("r- ", r));
   }
 
   goToCreateSubRead() {
-    this.router.navigateByUrl('/create-subreddit');
+    this.router.navigateByUrl('/create-subreddit').then(r => logUtil("r- ", r));
   }
 
 }

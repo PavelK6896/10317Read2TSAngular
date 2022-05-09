@@ -69,7 +69,7 @@ export class CreatePostComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (data) => {
           logUtil("createPost+ ", data)
-          this.router.navigateByUrl('');
+          this.router.navigateByUrl('').then(r => logUtil("r+ ", r));
 
         }, error: error => {
           logUtil("createPost- ", error)

@@ -6,13 +6,16 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { PostResponseDto } from "../../../utill/interface1";
 import { By } from "@angular/platform-browser";
+import { logUtil } from "../../../utill/log1";
 
 
 class RouterStub {
   navigate(path: string[]) {
+    logUtil("path- ", path)
   }
 
   navigateByUrl(url: string) {
+    logUtil("url- ", url)
   }
 }
 

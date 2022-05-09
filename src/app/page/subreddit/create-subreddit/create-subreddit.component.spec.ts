@@ -6,17 +6,21 @@ import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { Router } from "@angular/router";
 import { SubredditService } from "../../../service/subreddit.service";
 import { ToastrService } from "ngx-toastr";
+import { logUtil } from "../../../utill/log1";
 
 class RouterStub {
   navigateByUrl(url: string) {
+    logUtil("url+ ", url)
   }
 }
 
 class ToastrServiceSub {
   success(message?: string) {
+    logUtil("message+ ", message)
   }
 
   error(message?: string) {
+    logUtil("message+ ", message)
   }
 }
 

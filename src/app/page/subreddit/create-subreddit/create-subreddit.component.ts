@@ -48,7 +48,7 @@ export class CreateSubredditComponent {
           this.toastrService.success('Created', 'Info', {
             timeOut: 500,
           });
-          this.router.navigateByUrl('/list-subreddits');
+          this.router.navigateByUrl('/list-subreddits').then(r => logUtil("r+ ", r));
         }, error: error => {
           logUtil("createSubreddit- ", error)
           if (error.status == 400) {

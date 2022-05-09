@@ -29,7 +29,7 @@ import { PostTileComponent } from "./component/post/post-tile/post-tile.componen
 import { ToastrModule } from "ngx-toastr";
 import { quillModules } from "./utill/quillConfig";
 import { QuillModule } from "ngx-quill";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModule, NgbPaginationModule } from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
@@ -55,12 +55,13 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     QuillModule.forRoot({modules: quillModules}),
     NgbModule,
-    FormsModule
+    NgbPaginationModule
   ],
   providers: [
     {

@@ -16,14 +16,6 @@ export interface LoginRequestPayload {
   password: string;
 }
 
-
-export interface PostRequestDto {
-  subReadName: string
-  postName: string
-  description: string
-}
-
-
 export interface PostResponseDto {
   id: number
   postName: string
@@ -43,6 +35,7 @@ export interface VoteDto {
 }
 
 export enum VoteType {
-  UP_VOTE,
-  DOWN_VOTE
+  UP_VOTE = 'UP_VOTE',
+  DOWN_VOTE = 'DOWN_VOTE'
 }
+

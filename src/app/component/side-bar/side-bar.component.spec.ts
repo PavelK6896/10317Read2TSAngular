@@ -3,9 +3,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SideBarComponent } from './side-bar.component';
 import { Router } from "@angular/router";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { logUtil } from "../../utill/log1";
 
 class RouterStub {
   navigateByUrl(url: string) {
+    logUtil("url+ ", url)
   }
 }
 

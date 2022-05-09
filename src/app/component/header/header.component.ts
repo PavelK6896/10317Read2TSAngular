@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { Subscription, throwError } from "rxjs";
+import { Subscription } from "rxjs";
 import { AuthService } from "../../service/auth.service";
 import { logUtil } from "../../utill/log1";
 
@@ -27,7 +27,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.isLoggedIn = data
       }, error => {
         logUtil("loggedInEmitter- ", error)
-        throwError(error);
       });
     this.usernameEmitterSubscription = this.authService.usernameEmitter
       .subscribe((data: string) => {
@@ -35,7 +34,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.username = data
       }, error => {
         logUtil("usernameEmitter- ", error)
-        throwError(error);
       });
     this.isLoggedIn = this.authService.isLoggedIn();
     this.username = this.authService.getUserName();
@@ -51,12 +49,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   goToUserProfile() {
-    this.router.navigateByUrl('/user-profile/' + this.username);
+    this.router.navigateByUrl('/user-profile/' + this.username).then(r => logUtil("r- ", r));
   }
 
   logout() {
     this.authService.logout();
     this.isLoggedIn = false;
-    this.router.navigateByUrl('');
+    this.router.navigateByUrl('').then(r => logUtil("r- ", r));
   }
 }

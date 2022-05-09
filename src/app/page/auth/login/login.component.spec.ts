@@ -9,9 +9,11 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { AuthService } from "../../../service/auth.service";
+import { logUtil } from "../../../utill/log1";
 
 class RouterStub {
   navigateByUrl(url: string) {
+    logUtil("url+ ", url)
   }
 }
 
@@ -29,9 +31,11 @@ class ActivatedRouteStub {
 
 class ToastrServiceSub {
   success(message?: string) {
+    logUtil("message+ ", message)
   }
 
   error(message?: string) {
+    logUtil("message+ ", message)
   }
 }
 
@@ -64,8 +68,8 @@ describe('LoginComponent 2', () => {
   });
 
   it('2 activatedRoute queryParams registered', () => {
-    let toast: ToastrServiceSub = TestBed.get(ToastrService)
-    let route: ActivatedRouteStub = TestBed.get(ActivatedRoute)
+    let toast: ToastrServiceSub = TestBed.inject(ToastrServiceSub)
+    let route: ActivatedRouteStub = TestBed.inject(ActivatedRouteStub)
     let spyToast = spyOn(toast, 'success')
     route.push({registered: 'true'})
     expect(spyToast).toHaveBeenCalledWith('Sign up Successful')

@@ -1,6 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { throwError } from "rxjs";
-// import {faArrowDown, faArrowUp} from '@fortawesome/free-solid-svg-icons';
+import { Component, Input } from '@angular/core';
 import { Router } from "@angular/router";
 import { PostResponseDto, VoteDto, VoteType } from "../../utill/interface1";
 import { VoteService } from "../../service/vote.service";
@@ -12,14 +10,14 @@ import { logUtil } from "../../utill/log1";
   templateUrl: './vote-button.component.html',
   styleUrls: ['./vote-button.component.css']
 })
-export class VoteButtonComponent implements OnInit {
+export class VoteButtonComponent {
+
 
   @Input() post!: PostResponseDto;
   voteDto: VoteDto;
-  // faArrowUp = faArrowUp;
-  // faArrowDown = faArrowDown;
-  up = 'UP_VOTE'
-  down = 'DOWN_VOTE'
+  up = VoteType.UP_VOTE
+  down = VoteType.DOWN_VOTE
+
   isLoggedIn!: boolean;
 
   constructor(private voteService: VoteService,
@@ -33,12 +31,9 @@ export class VoteButtonComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-  }
-
   upVotePost() {
     if (!this.authService.isLoggedIn()) {
-      this.router.navigateByUrl('login')
+      this.router.navigateByUrl('login').then(r => logUtil("r+ ", r))
       return;
     }
     this.voteDto.voteType = VoteType.UP_VOTE;
@@ -48,7 +43,7 @@ export class VoteButtonComponent implements OnInit {
 
   downVotePost() {
     if (!this.authService.isLoggedIn()) {
-      this.router.navigateByUrl('login')
+      this.router.navigateByUrl('login').then(r => logUtil("r+ ", r))
       return;
     }
     this.voteDto.voteType = VoteType.DOWN_VOTE;
@@ -59,12 +54,13 @@ export class VoteButtonComponent implements OnInit {
   private vote() {
     this.voteDto.postId = this.post.id;
     this.voteService.vote(this.voteDto)
-      .subscribe((data) => {
-        logUtil("vote+ ", data)
-        this.post.voteCount = data
-      }, error => {
-        logUtil("vote- ", error)
-        throwError(error);
+      .subscribe({
+        next: (data) => {
+          logUtil("vote+ ", data)
+          this.post.voteCount = data
+        }, error: error => {
+          logUtil("vote- ", error)
+        }
       });
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PostResponseDto } from "../../../utill/interface1";
 
 @Component({
@@ -6,14 +6,8 @@ import { PostResponseDto } from "../../../utill/interface1";
   templateUrl: './post-top.component.html',
   styleUrls: ['./post-top.component.css']
 })
-export class PostTopComponent implements OnInit {
+export class PostTopComponent {
 
   @Input() post!: PostResponseDto;
-
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
 
 }

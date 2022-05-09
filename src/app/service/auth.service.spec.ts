@@ -19,14 +19,14 @@ describe('AuthService 3', () => {
   });
 
   it('2 login', () => {
-    let data2 = {username: '1', authenticationToken: "ssssss", refreshToken: "sss", expiresAt: "ss"}
+    let data2 = {username: '1', authenticationToken: "s", refreshToken: "sss", expiresAt: "ss"}
     let httpClient = TestBed.inject(HttpClient);
     let spy = spyOn(httpClient, 'post');
     spy.and.returnValues(of(data2))
 
     let result = null
     service.loggedInEmitter.subscribe(v => result = v)
-    let result2 = null
+    let result2: string | null = null
     service.usernameEmitter.subscribe(v => result2 = v)
 
     service.login({
@@ -39,8 +39,7 @@ describe('AuthService 3', () => {
     expect(localStorage.getItem("authenticationToken")).toBe(data2.authenticationToken)
     expect(localStorage.getItem("refreshToken")).toBe(data2.refreshToken)
     expect(localStorage.getItem("expiresAt")).toBe(data2.expiresAt)
-    // expect(result).toBe(true)
-    // expect(result2).toBe('1')
+    expect(result).toBeTrue()
   });
 
 

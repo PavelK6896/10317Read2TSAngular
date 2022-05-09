@@ -10,9 +10,11 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { PostService } from "../../../service/post.service";
 import { CommentService } from "../../../service/comment.service";
 import { PostResponseDto } from "../../../utill/interface1";
+import { logUtil } from "../../../utill/log1";
 
 class RouterStub {
   navigateByUrl(url: string) {
+    logUtil("url+ ", url)
   }
 }
 

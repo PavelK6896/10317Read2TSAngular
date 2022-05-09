@@ -9,21 +9,16 @@ import { PostResponseDto } from "../../utill/interface1";
 import { Router } from "@angular/router";
 import { By } from "@angular/platform-browser";
 import { of } from "rxjs";
+import { logUtil } from "../../utill/log1";
 
-
-class ToastrServiceSub {
-  success(message?: string) {
-  }
-
-  error(message?: string) {
-  }
-}
 
 class RouterStub {
   navigate(path: string[]) {
+    logUtil("path+ ", path)
   }
 
   navigateByUrl(url: string) {
+    logUtil("url+ ", url)
   }
 }
 
@@ -71,7 +66,7 @@ describe('VoteButtonComponent 15', () => {
 
     let authService = TestBed.inject(AuthService)
     let router = TestBed.inject(Router)
-    let spyService = spyOn(authService, 'isLoggedIn').and.returnValues(false)
+    spyOn(authService, 'isLoggedIn').and.returnValues(false)
     let spy = spyOn(router, 'navigateByUrl')
     component.upVotePost()
     expect(spy).toHaveBeenCalledWith('login')
@@ -86,8 +81,8 @@ describe('VoteButtonComponent 15', () => {
 
     let authService = TestBed.inject(AuthService)
     let voteService = TestBed.inject(VoteService)
-    let router = TestBed.inject(Router)
-    let spyService = spyOn(authService, 'isLoggedIn').and.returnValues(true)
+    TestBed.inject(Router)
+    spyOn(authService, 'isLoggedIn').and.returnValues(true)
     let spyService2 = spyOn(voteService, 'vote').and.returnValues(of(1050))
     component.upVotePost()
     expect(spyService2).toHaveBeenCalled()

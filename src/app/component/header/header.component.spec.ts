@@ -6,13 +6,16 @@ import { By } from "@angular/platform-browser";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { AuthService } from "../../service/auth.service";
+import { logUtil } from "../../utill/log1";
 
 
 class RouterStub {
   navigate(path: string[]) {
+    logUtil("path- ", path)
   }
 
   navigateByUrl(url: string) {
+    logUtil("url- ", url)
   }
 }
 

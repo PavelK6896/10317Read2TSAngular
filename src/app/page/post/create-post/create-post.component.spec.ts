@@ -9,20 +9,21 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { PostService } from "../../../service/post.service";
 import { SubredditService } from "../../../service/subreddit.service";
 import { CreatePostPayload } from "../../../utill/class1";
+import { logUtil } from "../../../utill/log1";
 
 class RouterStub {
   navigate(path: string[]) {
+    logUtil("path+ ", path)
   }
 
   navigateByUrl(url: string) {
+    logUtil("url+ ", url)
   }
 }
 
 describe('CreatePostComponent 10', () => {
   let component: CreatePostComponent;
   let fixture: ComponentFixture<CreatePostComponent>;
-  let postService: PostService
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CreatePostComponent],

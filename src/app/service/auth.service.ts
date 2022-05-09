@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Observable, throwError } from "rxjs";
+import { Observable } from "rxjs";
 import { map, tap } from "rxjs/operators";
 import { LoginRequestPayload, LoginResponse, SignupRequestPayload } from "../utill/interface1";
 import { urlConfig } from "../utill/urlConfig";
@@ -56,11 +56,12 @@ export class AuthService {
 
   logout() {
     this.httpClient.post(urlConfig.logout, this.refreshTokenPayload, {responseType: 'text'})
-      .subscribe(data => {
-        logUtil("logout+ ", data)
-      }, error => {
-        logUtil("logout- ", error)
-        throwError(error);
+      .subscribe({
+        next: data => {
+          logUtil("logout+ ", data)
+        }, error: error => {
+          logUtil("logout- ", error)
+        }
       })
     localStorage.removeItem('authenticationToken');
     localStorage.removeItem('username');

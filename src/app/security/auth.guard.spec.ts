@@ -3,9 +3,11 @@ import { TestBed } from "@angular/core/testing";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { Router } from "@angular/router";
 import { AuthService } from "../service/auth.service";
+import { logUtil } from "../utill/log1";
 
 class RouterStub {
   navigateByUrl(url: string) {
+    logUtil("url = ", url)
   }
 }
 

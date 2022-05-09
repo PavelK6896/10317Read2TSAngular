@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from "@angular/router";
 import { logUtil } from "../../../utill/log1";
 import { PostResponseDto } from "../../../utill/interface1";
@@ -8,7 +8,7 @@ import { PostResponseDto } from "../../../utill/interface1";
   templateUrl: './post-tile.component.html',
   styleUrls: ['./post-tile.component.css']
 })
-export class PostTileComponent implements OnInit {
+export class PostTileComponent {
 
   @Input() post!: PostResponseDto;
 
@@ -16,10 +16,7 @@ export class PostTileComponent implements OnInit {
     logUtil("PostTileComponent!")
   }
 
-  ngOnInit(): void {
-  }
-
   goToPost(id: number): void {
-    this.router.navigateByUrl('/view-post/' + id);
+    this.router.navigateByUrl('/view-post/' + id).then(r => logUtil("r- ", r));
   }
 }

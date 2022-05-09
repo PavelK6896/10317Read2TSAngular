@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
-import { throwError } from "rxjs";
 import { SubredditModel } from "../../utill/class1";
 import { SubredditService } from "../../service/subreddit.service";
 import { logUtil } from "../../utill/log1";
@@ -21,17 +19,18 @@ export class SubredditSideBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.subredditService.getAllSubreddits().subscribe(data => {
-      logUtil("getAllSubreddits+ ", data)
-      if (data.length > 3) {
-        this.subreddits = data.splice(0, 3);
-        this.displayViewAll = true;
-      } else {
-        this.subreddits = data;
+    this.subredditService.getAllSubreddits().subscribe({
+      next: data => {
+        logUtil("getAllSubreddits+ ", data)
+        if (data.length > 3) {
+          this.subreddits = data.splice(0, 3);
+          this.displayViewAll = true;
+        } else {
+          this.subreddits = data;
+        }
+      }, error: error => {
+        logUtil("getAllSubreddits- ", error)
       }
-    }, error => {
-      logUtil("getAllSubreddits- ", error)
-      throwError(error);
     });
   }
 }

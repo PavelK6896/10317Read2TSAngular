@@ -65,13 +65,15 @@ export class SignupComponent implements OnInit, OnDestroy {
     }
 
     this.signUpSubscription = this.authService.signUp(this.signUpRequestPayload)
-      .subscribe(data => {
-        logUtil("signUp+ ", data)
-        this.toastrService.success('success');
-        this.router.navigate(['/login'], {queryParams: {registered: 'true'}});
-      }, error => {
-        logUtil("signUp- ", error)
-        this.toastrService.error(error.error);
+      .subscribe({
+        next: data => {
+          logUtil("signUp+ ", data)
+          this.toastrService.success('success');
+          this.router.navigate(['/login'], {queryParams: {registered: 'true'}}).then(r => logUtil("r+ ", r));
+        }, error: error => {
+          logUtil("signUp- ", error)
+          this.toastrService.error(error.error);
+        }
       });
   }
 
