@@ -4,9 +4,9 @@ import { PostTileComponent } from './post-tile.component';
 import { Router } from "@angular/router";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
-import { PostResponseDto } from "../../../utill/interface1";
+import { PostResponseDto } from "../../../utill/interfaceUtill";
 import { By } from "@angular/platform-browser";
-import { logUtil } from "../../../utill/log1";
+import { logUtil } from "../../../utill/logUtill";
 
 
 class RouterStub {

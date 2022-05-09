@@ -8,26 +8,26 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HeaderComponent } from "./component/header/header.component";
-import { SignupComponent } from "./page/auth/signup/signup.component";
-import { LoginComponent } from "./page/auth/login/login.component";
-import { HomeComponent } from "./page/home/home.component";
-import { CreateSubredditComponent } from "./page/subreddit/create-subreddit/create-subreddit.component";
-import { CreatePostComponent } from "./page/post/create-post/create-post.component";
-import { ListSubredditsComponent } from "./page/subreddit/list-subreddits/list-subreddits.component";
-import { UserProfileComponent } from "./page/auth/user-profile/user-profile.component";
-import { ViewPostComponent } from "./page/post/view-post/view-post.component";
-import { ViewSubredditComponent } from "./page/subreddit/view-subreddit/view-subreddit.component";
+import { SignupComponent } from "./view/auth/signup/signup.component";
+import { LoginComponent } from "./view/auth/login/login.component";
+import { HomeComponent } from "./view/home/home.component";
+import { CreateSubReadComponent } from "./view/sub-read/create-sub-read/create-sub-read.component";
+import { CreatePostComponent } from "./view/post/create-post/create-post.component";
+import { ListSubReadComponent } from "./view/sub-read/list-sub-read/list-sub-read.component";
+import { UserProfileComponent } from "./view/auth/user-profile/user-profile.component";
+import { ViewPostComponent } from "./view/post/view-post/view-post.component";
+import { ViewSubReadComponent } from "./view/sub-read/view-sub-read/view-sub-read.component";
 import { TokenInterceptor } from "./security/token-interceptor";
 import { PostTopComponent } from './component/post/post-top/post-top.component';
-import { UserViewPostComponent } from './page/post/user-view-post/user-view-post.component';
+import { UserViewPostComponent } from './view/post/user-view-post/user-view-post.component';
 import { VoteButtonComponent } from "./component/vote-button/vote-button.component";
 import { SideBarComponent } from "./component/side-bar/side-bar.component";
-import { SubredditSideBarComponent } from "./component/subreddit-side-bar/subreddit-side-bar.component";
+import { SubReadSideBarComponent } from "./component/sub-read-side-bar/sub-read-side-bar.component";
 import { PostTileComponent } from "./component/post/post-tile/post-tile.component";
 
 
 import { ToastrModule } from "ngx-toastr";
-import { quillModules } from "./utill/quillConfig";
+import { quillModules } from "./config/quillConfig";
 import { QuillModule } from "ngx-quill";
 import { NgbModule, NgbPaginationModule } from "@ng-bootstrap/ng-bootstrap";
 
@@ -41,13 +41,13 @@ import { NgbModule, NgbPaginationModule } from "@ng-bootstrap/ng-bootstrap";
     PostTileComponent,
     VoteButtonComponent,
     SideBarComponent,
-    SubredditSideBarComponent,
-    CreateSubredditComponent,
+    SubReadSideBarComponent,
+    CreateSubReadComponent,
     CreatePostComponent,
-    ListSubredditsComponent,
+    ListSubReadComponent,
     ViewPostComponent,
     UserProfileComponent,
-    ViewSubredditComponent,
+    ViewSubReadComponent,
     PostTopComponent,
     UserViewPostComponent,
   ],

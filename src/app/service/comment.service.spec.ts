@@ -2,7 +2,7 @@ import { CommentService } from './comment.service';
 import { TestBed } from "@angular/core/testing";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { of } from "rxjs";
-import { CommentPayload } from "../utill/class1";
+import { CommentPayload } from "../utill/classUtill";
 
 describe('CommentService 7', () => {
   let service: CommentService;

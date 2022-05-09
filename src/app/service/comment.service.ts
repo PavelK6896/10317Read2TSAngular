@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { CommentPayload } from "../utill/class1";
-import { urlConfig } from "../utill/urlConfig";
+import { CommentPayload } from "../utill/classUtill";
+import { urlConfig } from "../config/urlConfig";
 
 @Injectable({
   providedIn: 'root'

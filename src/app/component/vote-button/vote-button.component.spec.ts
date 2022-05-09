@@ -5,11 +5,11 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { VoteService } from "../../service/vote.service";
 import { AuthService } from "../../service/auth.service";
-import { PostResponseDto } from "../../utill/interface1";
+import { PostResponseDto } from "../../utill/interfaceUtill";
 import { Router } from "@angular/router";
 import { By } from "@angular/platform-browser";
 import { of } from "rxjs";
-import { logUtil } from "../../utill/log1";
+import { logUtil } from "../../utill/logUtill";
 
 
 class RouterStub {

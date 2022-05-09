@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 
-import { urlConfig } from "../utill/urlConfig";
-import { VoteDto } from "../utill/interface1";
+import { urlConfig } from "../config/urlConfig";
+import { VoteDto } from "../utill/interfaceUtill";
 
 @Injectable({
   providedIn: 'root'

@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 
-import { urlConfig } from "../utill/urlConfig";
-import { PostResponseDto } from "../utill/interface1";
-import { CreatePostPayload } from "../utill/class1";
+import { urlConfig } from "../config/urlConfig";
+import { PostResponseDto } from "../utill/interfaceUtill";
+import { CreatePostPayload } from "../utill/classUtill";
 
 @Injectable({
   providedIn: 'root'

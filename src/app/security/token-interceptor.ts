@@ -3,8 +3,8 @@ import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, filter, switchMap, take } from 'rxjs/operators';
 import { AuthService } from "../service/auth.service";
-import { logUtil } from "../utill/log1";
-import { LoginResponse } from "../utill/interface1";
+import { logUtil } from "../utill/logUtill";
+import { LoginResponse } from "../utill/interfaceUtill";
 
 @Injectable({
   providedIn: 'root'

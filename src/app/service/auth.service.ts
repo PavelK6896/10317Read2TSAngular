@@ -2,9 +2,9 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { map, tap } from "rxjs/operators";
-import { LoginRequestPayload, LoginResponse, SignupRequestPayload } from "../utill/interface1";
-import { urlConfig } from "../utill/urlConfig";
-import { logUtil } from "../utill/log1";
+import { LoginRequestPayload, LoginResponse, SignupRequestPayload } from "../utill/interfaceUtill";
+import { urlConfig } from "../config/urlConfig";
+import { logUtil } from "../utill/logUtill";
 
 
 @Injectable({

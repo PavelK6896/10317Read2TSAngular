@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { Router } from "@angular/router";
-import { PostResponseDto, VoteDto, VoteType } from "../../utill/interface1";
+import { PostResponseDto, VoteDto, VoteType } from "../../utill/interfaceUtill";
 import { VoteService } from "../../service/vote.service";
 import { AuthService } from "../../service/auth.service";
-import { logUtil } from "../../utill/log1";
+import { logUtil } from "../../utill/logUtill";
 
 @Component({
   selector: 'app-vote-button',

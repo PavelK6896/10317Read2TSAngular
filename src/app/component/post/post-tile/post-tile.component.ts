@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from "@angular/router";
-import { logUtil } from "../../../utill/log1";
-import { PostResponseDto } from "../../../utill/interface1";
+import { logUtil } from "../../../utill/logUtill";
+import { PostResponseDto } from "../../../utill/interfaceUtill";
 
 @Component({
   selector: 'app-post-tile',

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { AuthService } from "../../service/auth.service";
-import { logUtil } from "../../utill/log1";
+import { logUtil } from "../../utill/logUtill";
 
 @Component({
   selector: 'app-header',

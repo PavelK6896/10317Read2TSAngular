@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { PostResponseDto } from "../../../utill/interface1";
+import { PostResponseDto } from "../../../utill/interfaceUtill";
 
 @Component({
   selector: 'app-post-top',
