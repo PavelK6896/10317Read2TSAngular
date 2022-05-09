@@ -3,7 +3,7 @@
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header" style="text-align: center"><h4>Login</h4></div>
+                <div class="card-header"><h4>Login</h4></div>
                 <div class="card-body">
                     <form [formGroup]="loginForm">
                         <div class="form-group row mt-4">
@@ -13,21 +13,21 @@
                                        name="user_name"
                                        required autocomplete="username"
                                        type="text">
-                                <span style="position: absolute; max-width:  16rem"
-                                      *ngIf="!loginForm.get('username')?.valid && loginForm.get('username')?.touched">
+                                <span
+                                        *ngIf="!loginForm.get('username')?.valid && loginForm.get('username')?.touched">
                                    Please provide a valid username autocomplete="username"
                                 </span>
                             </div>
                         </div>
 
-                        <div class="form-group row" style="padding-top: 4rem;">
+                        <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right" for="password">Password</label>
                             <div class="col-md-6">
                                 <input [formControlName]="'password'" class="form-control" id="password" name="password"
                                        required autocomplete="current-password"
                                        type="password">
-                                <span style="position: absolute; max-width:  16rem"
-                                      *ngIf="!loginForm.get('password')?.valid && loginForm.get('password')?.touched">
+                                <span
+                                        *ngIf="!loginForm.get('password')?.valid && loginForm.get('password')?.touched">
                                   Password cannot be empty
                                 </span>
                             </div>
@@ -46,7 +46,6 @@
                             <p class="login-failed-text">Login Failed. Please check your credentials and try again.</p>
                         </div>
                         <div *ngIf="this.registerSuccessMessage && this.registerSuccessMessage.length > 0"
-                             [ngStyle]="{'background-color': 'green'}"
                              class="login-failed">
                             <p class="register-success-text">{{registerSuccessMessage}}</p>
                         </div>

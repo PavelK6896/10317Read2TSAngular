@@ -15,11 +15,11 @@
 
                     <div class="form-control h-auto">
                         <label>Текст поста </label>
-                        <quill-editor [formControlName]="'description'" [styles]="{height: '55vh'}"></quill-editor>
+                        <quill-editor [formControlName]="'description'"></quill-editor>
                     </div>
 
                     <div>
-                        <div class="d-flex justify-content-around" style="margin-top: 5px;">
+                        <div class="d-flex justify-content-around">
                             <button (click)="discardPost()" class="btnDiscard" id="discardPost">Discard</button>
                             <button (click)="createPost()" class="btnCreatePost" id="createPost"
                                     [disabled]="createPostForm.invalid">Create

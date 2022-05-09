@@ -1,5 +1,5 @@
 <div class="sidebar-view-subreddit">
-    <div style="color: black; font-weight: bold; text-align: center">Browse sub</div>
+    <div>Browse sub</div>
     <hr/>
     <span *ngFor="let s of subreddits">
         <span class="">
@@ -7,7 +7,7 @@
         </span>
         <hr/>
     </span>
-    <div *ngIf="displayViewAll" style="text-align: center">
-        <a routerLink="/list-subreddits" style="font-weight: bold">View all</a>
+    <div *ngIf="displayViewAll">
+        <a routerLink="/list-subreddits">View all</a>
     </div>
 </div>
