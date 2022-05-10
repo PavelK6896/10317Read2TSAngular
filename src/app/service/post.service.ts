@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 
 import { urlConfig } from "../config/urlConfig";
-import { PostResponseDto } from "../utill/interfaceUtill";
+import { PagePostResponseDto, PostResponseDto } from "../utill/interfaceUtill";
 import { CreatePostPayload } from "../utill/classUtill";
 
 @Injectable({
@@ -14,8 +14,8 @@ export class PostService {
   constructor(private http: HttpClient) {
   }
 
-  getAllPosts(): Observable<PostResponseDto[]> {
-    return this.http.get<PostResponseDto[]>(urlConfig.getAllPosts);
+  getAllPosts(): Observable<PagePostResponseDto> {
+    return this.http.get<PagePostResponseDto>(urlConfig.getAllPosts);
   }
 
   createPost(postPayload: CreatePostPayload): Observable<any> {

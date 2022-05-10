@@ -29,6 +29,17 @@ export interface PostResponseDto {
   vote: string
 }
 
+export interface PagePostResponseDto {
+  totalPages: number
+  totalElements: number
+  first: boolean
+  last: boolean
+  number: number
+  numberOfElements: number
+  size: number
+  content: PostResponseDto[]
+}
+
 export interface VoteDto {
   voteType: VoteType | undefined
   postId: number | undefined

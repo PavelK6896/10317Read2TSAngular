@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       .subscribe({
         next: data => {
           logUtil("getAllPosts+ ", data)
-          this.posts = data;
+          this.posts = data.content;
           this.loadingPost = true
         }, error: error => {
           logUtil("getAllPosts- ", error)
