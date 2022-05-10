@@ -1,34 +1,24 @@
-<div class="container">
+<div class="">
     <div class="row">
-        <div class="create-subreddit-container">
-            <form [formGroup]="createSubredditForm" class="post-form">
+        <div class="col-9">
+            <form [formGroup]="createSubredditForm" class="">
                 <div class="form-group">
-                    <div class="create-subreddit-heading">Create Subreddit</div>
-                    <hr/>
-                    <input [formControlName]="'title'"
-                           class="form-control"
-                           placeholder="Title"
-
-                           type="text"
-                    >
-                    <textarea [formControlName]="'description'"
-                              placeholder="Description"
-
-                              type="text"
-                    ></textarea>
-                    <div>
-                        <div class="float-right">
-                            <button (click)="discard()" class="btnDiscard">Discard</button>
+                    <div class="my-2">Create Subreddit</div>
+                    <input [formControlName]="'title'" class="form-control" placeholder="Title" type="text">
+                    <textarea [formControlName]="'description'" class="form-control my-2" placeholder="Description"
+                              type="text"></textarea>
+                    <div class="d-flex justify-content-end">
+                        <div class="">
+                            <button (click)="discard()" class="btnDiscard mx-2">Discard</button>
                             <button (click)="createSubreddit()" class="btnCreateSubreddit">Create</button>
                         </div>
                     </div>
                 </div>
             </form>
         </div>
-        <div class="col-md-3">
-            <div class="sidebar">
-                <h5 class="guidelines">Posting to Spring Reddit</h5>
-                <hr/>
+        <div class="col-3">
+            <div class="">
+                <h5 class="">Posting to string read:</h5>
                 <ul>
                     <li>Remember the human</li>
                     <hr/>

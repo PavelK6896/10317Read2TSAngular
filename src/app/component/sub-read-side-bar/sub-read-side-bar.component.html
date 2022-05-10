@@ -1,12 +1,8 @@
-<div class="sidebar-view-subreddit">
+<div class="">
     <div>Browse sub</div>
-    <hr/>
-    <span *ngFor="let s of subreddits">
-        <span class="">
-            <a routerLink="/view-subreddit/{{s.id}}">{{s.name}}</a>
-        </span>
-        <hr/>
-    </span>
+    <div *ngFor="let s of subreddits" class="border-dark border-bottom border-1 my-2">
+        <a class="link-primary " routerLink="/view-subreddit/{{s.id}}">{{s.name}}</a>
+    </div>
     <div *ngIf="displayViewAll">
         <a routerLink="/list-subreddits">View all</a>
     </div>

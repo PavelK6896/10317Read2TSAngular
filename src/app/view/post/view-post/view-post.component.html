@@ -1,62 +1,46 @@
-<div *ngIf="loadingPost; else loadingC " class="container">
+<div *ngIf="loadingPost; else loadingC " class="">
     <div class="row">
-        <hr/>
-        <div class="col-md-9">
-            <div class="row post">
-                <div class="col-md-1">
+        <div class="col-9 border-1 border-dark border">
+            <div class="row">
+                <div class="col-1">
                     <app-vote-button [post]="this.post"></app-vote-button>
                 </div>
-                <div class="col-md-11">
-                    <app-post-top [post]="post"></app-post-top>
-                    <hr/>
-
-                    <div class="post-text text-center p-1">Title: {{post.postName}}
+                <div class="col-11">
+                    <app-post-top [post]="post" class="p-1"></app-post-top>
+                    <div class=" p-1">Title: {{post.postName}}
                     </div>
-
-                    <br/>
-                    <div class="p-5">
+                    <div class="p-1">
                         <quill-view-html [content]="post.description"></quill-view-html>
                     </div>
-                    <br/>
 
-                    <div class="post-comment">
-                        <form [formGroup]="commentForm">
-                            <div class="form-group">
+                    <div class="mt-5">
+                        <form [formGroup]="commentForm" class="flex-column">
+                            <div class="p-2">
                                 <textarea [formControlName]="'text'" class="form-control"
                                           placeholder="Your thoughts?"></textarea>
                             </div>
-                            <button
-                                    class="buttonPainted float-right"
-                                    type="submit"
-                                    (click)="postComment()"
-                            >Comment
-                            </button>
-
+                            <div class="d-flex justify-content-end p-2">
+                                <button class="" type="submit" (click)="postComment()">Comment</button>
+                            </div>
                         </form>
                     </div>
 
-                    <hr/>
-
-                    <div *ngIf="loadingComment; else loadingC">
+                    <div *ngIf="loadingComment; else loadingC" class="  my-2">
                         <div *ngFor="let comment of comments">
-                            <div class="comment">
-                                <div class="username">
-                                    <a routerLink="/user/">{{comment.username}}</a>
-                                </div>
-                                <div>
-                                    <p>{{comment.duration}}</p>
-                                </div>
+                            <div class="border-dark border-bottom border-1 d-flex justify-content-between">
                                 <strong>{{comment.text}}</strong>
+                                <div class="">
+                                    <a routerLink="/user/">{{comment.userName}}</a>&nbsp;
+                                    <span>{{getDateFormat(comment.createdDate)}}</span>
+                                </div>
                             </div>
-                            <hr/>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-3">
             <app-side-bar></app-side-bar>
             <app-subreddit-side-bar></app-subreddit-side-bar>
         </div>

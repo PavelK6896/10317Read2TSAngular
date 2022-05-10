@@ -4,12 +4,10 @@
     </div>
     <div class="col-11">
         <app-post-top [post]="post"></app-post-top>
-        <hr/>
-        <div>
-            <a (click)="goToPost(post.id)" class="">{{post.postName}}</a>
+        <div (click)="goToPost(post.id)" class="border-dark border-1 border-bottom my-2 py-2">
+            <div class="">{{post.postName}}</div>
         </div>
-        <hr/>
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between pb-2 pt-1">
             <div>
                 <button class="" routerLink="/view-post/{{post.id}}">comments</button>
                 <span>&nbsp;{{post.commentCount}}</span>

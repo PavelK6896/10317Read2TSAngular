@@ -97,4 +97,11 @@ export class ViewPostComponent implements OnInit {
         }
       });
   }
+
+  getDateFormat(createdDate: string | undefined): string {
+    if (createdDate !== undefined) {
+      return new Date(createdDate).toLocaleString();
+    }
+    return ''
+  }
 }

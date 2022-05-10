@@ -73,4 +73,11 @@ export class UserProfileComponent implements OnInit, OnDestroy {
       this.commentsSub.unsubscribe()
     }
   }
+
+  getDateFormat(createdDate: string | undefined): string {
+    if (createdDate !== undefined) {
+      return new Date(createdDate).toLocaleString();
+    }
+    return ''
+  }
 }

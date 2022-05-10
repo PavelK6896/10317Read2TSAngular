@@ -1,28 +1,24 @@
-<div class="container">
+<div class="">
     <div class="">
-        <hr/>
         <div class="">
-            <form [formGroup]="createPostForm" class="post-form">
+            <form [formGroup]="createPostForm" class="">
                 <div class="form-group">
-                    <div class="create-post-heading">Create Post</div>
-                    <hr/>
-                    <input [formControlName]="'postName'" class="form-control mt-2" placeholder="Title" type="text">
-
-                    <select [formControlName]="'subReadName'" class="form-control mt-2" name="sub">
+                    <div class="my-2">Create Post</div>
+                    <input [formControlName]="'postName'" class="form-control mb-2" placeholder="Title" type="text">
+                    <select [formControlName]="'subReadName'" class="form-select mb-2" name="sub">
                         <option selected hidden>Choose here</option>
                         <option *ngFor="let subreddit of subRead">{{subreddit.name}}</option>
                     </select>
-
-                    <div class="form-control h-auto">
-                        <label>Текст поста </label>
-                        <quill-editor [formControlName]="'description'"></quill-editor>
+                    <div class="form-control my-2">
+                        <quill-editor [formControlName]="'description'"
+                                      placeholder="The text of the post"></quill-editor>
                     </div>
 
                     <div>
-                        <div class="d-flex justify-content-around">
-                            <button (click)="discardPost()" class="btnDiscard" id="discardPost">Discard</button>
-                            <button (click)="createPost()" class="btnCreatePost" id="createPost"
-                                    [disabled]="createPostForm.invalid">Create
+                        <div class="d-flex justify-content-end">
+                            <button (click)="discardPost()" class="mx-2" id="discardPost">Discard</button>
+                            <button (click)="createPost()" class="" id="createPost" [disabled]="createPostForm.invalid">
+                                Create
                             </button>
                         </div>
                     </div>

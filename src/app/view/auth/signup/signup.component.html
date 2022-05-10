@@ -1,38 +1,30 @@
-<div class="register-section">
-    <div class="row justify-content-center">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
+<div class="">
+    <div class="row ">
+        <div class="col-3"></div>
+        <div class="col-6">
             <div class="card">
                 <div class="card-header">
                     <h4>Register</h4>
                 </div>
-
                 <div class="card-body">
                     <form [formGroup]="signUpForm">
                         <div class="form-group row mt-2">
-                            <label class="col-md-4 col-form-label text-md-right" for="email_address">E-Mail
-                                Address</label>
-                            <div class="col-md-6">
+                            <label class="col-4 " for="email_address">E-mail</label>
+                            <div class="col-6">
                                 <input [formControlName]="'email'" autofocus class="form-control" id="email_address"
                                        name="email-address" required autocomplete="email"
-                                       type="text"
-
-                                >
-
+                                       type="text">
                                 <span *ngIf="!signUpForm.get('email')?.valid && signUpForm.get('email')?.touched">
                                     Please provide a valid email
                                 </span>
                             </div>
                         </div>
-
                         <div class="form-group row mt-2">
-                            <label class="col-md-4 col-form-label text-md-right">User Name</label>
-                            <div class="col-md-6">
+                            <label class="col-4">Username</label>
+                            <div class="col-6">
                                 <input [formControlName]="'username'" autofocus
                                        class="form-control" required autocomplete="username"
-                                       type="text"
-
-                                >
+                                       type="text">
                                 <span *ngIf="!signUpForm.get('username')?.valid && signUpForm.get('username')?.touched">
                                     Please provide a valid username <br/>
                                     min 5 symbol
@@ -54,13 +46,13 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6 offset-md-4">
-                            <div class="d-flex flex-column align-content-end justify-content-end align-items-end">
-                                <button (click)="signUp()" class="buttonNoPainted mt-4" type="submit"
+                        <div class="col-6 offset-4">
+                            <div class="d-flex flex-column  align-items-end">
+                                <button (click)="signUp()" class="mt-4" type="submit"
                                         [disabled]="signUpForm.invalid">Sign up
                                 </button>
                                 <br/>
-                                <div>Existing user? <a routerLink="/login">Log in</a></div>
+                                <div>Existing user&nbsp;<a routerLink="/login">Log in</a></div>
                             </div>
                         </div>
                     </form>
@@ -68,6 +60,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3"></div>
+        <div class="col-3"></div>
     </div>
 </div>
