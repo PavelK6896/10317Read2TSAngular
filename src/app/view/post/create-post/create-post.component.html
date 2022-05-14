@@ -16,8 +16,10 @@
 
                     <div>
                         <div class="d-flex justify-content-end">
-                            <button (click)="discardPost()" class="mx-2" id="discardPost">Discard</button>
-                            <button (click)="createPost()" class="" id="createPost" [disabled]="createPostForm.invalid">
+                            <button (click)="discardPost()" class="btn btn-warning mx-2" id="discardPost">Discard
+                            </button>
+                            <button (click)="createPost()" class="btn btn-primary" id="createPost"
+                                    [disabled]="createPostForm.invalid">
                                 Create
                             </button>
                         </div>

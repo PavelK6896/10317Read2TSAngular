@@ -9,8 +9,10 @@
                               type="text"></textarea>
                     <div class="d-flex justify-content-end">
                         <div class="">
-                            <button (click)="discard()" class="btnDiscard mx-2">Discard</button>
-                            <button (click)="createSubreddit()" class="btnCreateSubreddit">Create</button>
+                            <button (click)="discard()" class="btn btn-warning mx-2">Discard</button>
+                            <button (click)="createSubreddit()" class="btn btn-primary"
+                                    [disabled]="createSubredditForm.invalid">Create
+                            </button>
                         </div>
                     </div>
                 </div>
