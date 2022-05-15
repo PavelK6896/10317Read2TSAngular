@@ -2,3 +2,20 @@
 @import '~quill/dist/quill.bubble.css';
 @import '~quill/dist/quill.snow.css';
 @import "~bootstrap/dist/css/bootstrap.css";
+@import "./dark.css";
+
+.color-mode__btn {
+    z-index: 9000;
+}
+
+:root {
+    color-scheme: light dark
+}
+
+[color-mode="light"]:root .light--hidden {
+    display: none;
+}
+
+[color-mode="dark"]:root .dark--hidden {
+    display: none;
+}

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" color-mode="dark">
 <head>
     <meta charset="utf-8">
     <title>10317Read2TSAngular</title>
@@ -8,6 +8,39 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
+<script>
+    if (window && document.documentElement) {
+        const e = window.localStorage.getItem("color-mode")
+        if (e) {
+            document.documentElement.setAttribute("color-mode", e);
+        } else {
+            if (window.matchMedia("(prefers-color-scheme: dark)")) {
+                document.documentElement.setAttribute("color-mode", "dark");
+                localStorage.setItem("color-mode", "dark")
+            } else {
+                document.documentElement.setAttribute("color-mode", "light");
+            }
+        }
+    }
+</script>
+<button class="color-mode__btn light--hidden btn btn-light position-fixed top-0 end-0 mt-2 me-2 ">Light</button>
+<button class="color-mode__btn dark--hidden btn btn-secondary position-fixed top-0 end-0 mt-2 me-2  ">Dark</button>
+<script>
+    const toggleColorMode = e => {
+        if (e.currentTarget.classList.contains("light--hidden")) {
+            document.documentElement.setAttribute("color-mode", "light");
+            localStorage.setItem("color-mode", "light")
+            return;
+        }
+        document.documentElement.setAttribute("color-mode", "dark");
+        localStorage.setItem("color-mode", "dark")
+    }
+
+    const toggleColorButtons = document.querySelectorAll(".color-mode__btn");
+    toggleColorButtons.forEach(btn => {
+        btn.addEventListener("click", toggleColorMode);
+    });
+</script>
 <app-root></app-root>
 </body>
 </html>

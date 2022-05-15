@@ -9,7 +9,7 @@
         <span class="h4 ">Read 2</span>
     </a>
 </div>
-<div class="">
+<div class="me-5">
     <div *ngIf="isLoggedIn" class="d-flex flex-row ">
         <div>
             <button class="btn btn-outline-primary me-2" (click)="goToUserProfile()" id="goToUserProfile">Profile
@@ -27,7 +27,7 @@
             {{username}}
         </div>
     </div>
-    <div *ngIf="!isLoggedIn">
+    <div *ngIf="!isLoggedIn" class="d-flex flex-row ">
         <button class="btn btn-outline-success mx-2" routerLink="/sign-up">Sign up</button>
         <button class="btn btn-outline-primary" routerLink="/login">Log in</button>
     </div>
