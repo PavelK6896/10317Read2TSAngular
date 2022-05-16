@@ -27,8 +27,10 @@
             {{username}}
         </div>
     </div>
-    <div *ngIf="!isLoggedIn" class="d-flex flex-row ">
-        <button class="btn btn-outline-success mx-2" routerLink="/sign-up">Sign up</button>
-        <button class="btn btn-outline-primary" routerLink="/login">Log in</button>
+    <div *ngIf="!isLoggedIn" class="d-flex flex-row">
+        <div style="height: 50px">
+            <button class="btn btn-outline-success mx-2" routerLink="/sign-up">Sign up</button>
+            <button class="btn btn-outline-primary" routerLink="/login">Log in</button>
+        </div>
     </div>
 </div>
