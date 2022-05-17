@@ -20,7 +20,7 @@
             <div class="border-dark border-bottom border-1 d-flex justify-content-between">
                 <strong>{{comment.text}}</strong>
                 <div class="">
-                    <a routerLink="/user/">{{comment.userName}}</a>&nbsp;
+                    <a class="link-secondary" routerLink="/user/{{comment.userName}}">{{comment.userName}}</a>&nbsp;
                     <span>{{getDateFormat(comment.createdDate)}}</span>
                 </div>
             </div>
