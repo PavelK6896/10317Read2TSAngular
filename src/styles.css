@@ -4,6 +4,11 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "./dark.css";
 
+
+.cursor-pointer:hover {
+    cursor: pointer
+}
+
 .color-mode__btn {
     z-index: 9000;
 }

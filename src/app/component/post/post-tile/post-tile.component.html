@@ -4,7 +4,7 @@
     </div>
     <div class="col-11">
         <app-post-top [post]="post"></app-post-top>
-        <div (click)="goToPost(post.id)" class="border-dark border-1 border-bottom my-2 py-2">
+        <div (click)="goToPost(post.id)" class="border-dark border-1 border-bottom my-2 py-2 cursor-pointer">
             <div class="">{{post.postName}}</div>
         </div>
         <div class="d-flex justify-content-between pb-2 pt-1">
