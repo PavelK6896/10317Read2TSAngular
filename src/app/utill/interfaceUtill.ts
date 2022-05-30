@@ -16,6 +16,17 @@ export interface LoginRequestPayload {
   password: string;
 }
 
+export interface Page {
+  totalPages: number
+  totalElements: number
+  first: boolean
+  last: boolean
+  number: number
+  numberOfElements: number
+  size: number
+}
+
+
 export interface PostResponseDto {
   id: number
   postName: string
@@ -29,16 +40,21 @@ export interface PostResponseDto {
   vote: string
 }
 
-export interface PagePostResponseDto {
-  totalPages: number
-  totalElements: number
-  first: boolean
-  last: boolean
-  number: number
-  numberOfElements: number
-  size: number
+export interface PagePostResponseDto extends Page {
   content: PostResponseDto[]
 }
+
+export interface SubReadDto {
+  id: number;
+  name: string;
+  description: string;
+  numberOfPosts: number;
+}
+
+export interface PageSubReadDto extends Page {
+  content: SubReadDto[]
+}
+
 
 export interface VoteDto {
   voteType: VoteType | undefined

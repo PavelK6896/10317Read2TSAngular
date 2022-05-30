@@ -20,11 +20,11 @@ export class ListSubReadComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.getAllSubredditsSubscription = this.subredditService.getAllSubreddits()
+    this.getAllSubredditsSubscription = this.subredditService.getPageSubRead()
       .subscribe({
         next: data => {
           logUtil("getAllSubreddits+ ", data)
-          this.subreddits = data;
+          this.subreddits = data.content;
         }, error: error => {
           logUtil("getAllSubreddits- ", error)
         }

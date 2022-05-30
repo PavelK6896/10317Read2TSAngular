@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { catchError, filter, switchMap, take } from 'rxjs/operators';
 import { AuthService } from "../service/auth.service";
 import { logUtil } from "../utill/logUtill";
@@ -25,7 +25,7 @@ export class TokenInterceptor implements HttpInterceptor {
     const jwtToken = this.authService.getJwtToken();
 
     if (jwtToken) {
-      logUtil("intercept jwtToken", jwtToken)
+      logUtil("intercept jwtToken", jwtToken.substring(0, 5))
       return next.handle(this.addToken(req, jwtToken))
         .pipe(
           catchError(error => {
@@ -33,7 +33,7 @@ export class TokenInterceptor implements HttpInterceptor {
               if (error instanceof HttpErrorResponse && error.status === 403) {
                 return this.handleAuthErrors(req, next);
               } else {
-                return of(error)
+                throw new Error(error.error)
               }
             }
           ));
@@ -45,7 +45,7 @@ export class TokenInterceptor implements HttpInterceptor {
     let httpRequest = req.clone({
       headers: req.headers.set('Authorization', 'Bearer ' + jwtToken)
     });
-    logUtil("addToken+ ", httpRequest.headers.get('Authorization'))
+    logUtil("addToken+ ", httpRequest.headers.get('Authorization')?.substring(0, 5))
     return httpRequest;
   }
 

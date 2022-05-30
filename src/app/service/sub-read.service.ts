@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { urlConfig } from "../config/urlConfig";
-import { SubReadModel } from "../utill/classUtill";
+import { PageSubReadDto, SubReadDto } from "../utill/interfaceUtill";
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +12,15 @@ export class SubReadService {
   constructor(private http: HttpClient) {
   }
 
-  getAllSubreddits(): Observable<Array<SubReadModel>> {
-    return this.http.get<Array<SubReadModel>>(urlConfig.getAllSubreddits);
+  getPageSubRead(): Observable<PageSubReadDto> {
+    return this.http.get<PageSubReadDto>(urlConfig.getPageSubRead);
   }
 
-  getSubredditsId(subId: number): Observable<SubReadModel> {
-    return this.http.get<SubReadModel>(urlConfig.getSubredditsId + '/' + subId);
+  getSubReadById(subId: number): Observable<SubReadDto> {
+    return this.http.get<SubReadDto>(urlConfig.getSubReadById + '/' + subId);
   }
 
-  createSubreddit(subredditModel: SubReadModel): Observable<SubReadModel> {
-    return this.http.post<SubReadModel>(urlConfig.createSubreddit, subredditModel);
+  createSubRead(subReadDto: SubReadDto): Observable<SubReadDto> {
+    return this.http.post<SubReadDto>(urlConfig.createSubRead, subReadDto);
   }
 }

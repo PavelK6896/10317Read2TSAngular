@@ -19,7 +19,6 @@ export class PostService {
   }
 
   createPost(postPayload: CreatePostPayload): Observable<any> {
-
     return this.http.post(urlConfig.createPost, postPayload);
   }
 

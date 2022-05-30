@@ -39,11 +39,11 @@ export class CreatePostComponent implements OnInit, OnDestroy {
       description: new FormControl(null, Validators.required),
     });
 
-    this.getAllSubReadSub = this.subredditService.getAllSubreddits()
+    this.getAllSubReadSub = this.subredditService.getPageSubRead()
       .subscribe({
         next: (data) => {
           logUtil("getAllSubreddits+ ", data)
-          this.subRead = data;
+          this.subRead = data.content;
         }, error: error => {
           logUtil("getAllSubreddits- ", error)
         }

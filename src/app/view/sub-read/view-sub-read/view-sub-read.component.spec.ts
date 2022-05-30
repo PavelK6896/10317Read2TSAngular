@@ -8,8 +8,7 @@ import { of } from "rxjs";
 import { By } from "@angular/platform-browser";
 import { PostService } from "../../../service/post.service";
 import { SubReadService } from "../../../service/sub-read.service";
-import { SubReadModel } from "../../../utill/classUtill";
-import { PostResponseDto } from "../../../utill/interfaceUtill";
+import { PostResponseDto, SubReadDto } from "../../../utill/interfaceUtill";
 
 const subId = 50
 
@@ -72,7 +71,7 @@ describe('ViewSubReadComponent 21', () => {
     spyPostService.and.returnValue(of([p]))
     let spySubredditService = spyOn(subredditService, 'getSubredditsId')
 
-    let subredditModel = new SubReadModel(1, 'name', "d", 22);
+    let subredditModel: SubReadDto = {description: "d", id: 1, name: "name", numberOfPosts: 22}
     spySubredditService.and.returnValue(of(subredditModel))
 
     component.ngOnInit()

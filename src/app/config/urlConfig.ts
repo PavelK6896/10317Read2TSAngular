@@ -1,24 +1,24 @@
 import { environment } from "../../environments/environment.prod";
 
-const read1 = environment.URL + '/api/read2'
+const read2 = environment.URL + '/api/read2'
 
 export const urlConfig = {
 
-  getAllSubreddits: read1 + '/api/subreddit',
-  getSubredditsId: read1 + '/api/subreddit',
-  createSubreddit: read1 + '/api/subreddit',
-  vote: read1 + '/api/votes',
-  getAllPosts: read1 + '/api/posts',
-  createPost: read1 + '/api/posts',
-  getPostById: read1 + '/api/posts/',
-  getAllPostsByUser: read1 + '/api/posts/by-user/',
-  getAllPostsBySub: read1 + '/api/posts/by-subreddit/',
-  postComment: read1 + '/api/comments',
-  getAllCommentsForPost: read1 + '/api/comments/by-post/',
-  getAllCommentsByUser: read1 + '/api/comments/by-user/',
-  signUp: read1 + '/api/auth/signUp',
-  login: read1 + '/api/auth/login',
-  refreshToken: read1 + '/api/auth/refresh/token',
-  logout: read1 + '/api/auth/logout',
+  getPageSubRead: read2 + '/sub-read',
+  getSubReadById: read2 + '/sub-read',
+  createSubRead: read2 + '/sub-read',
+  vote: read2 + '/vote',
+  getAllPosts: read2 + '/post',
+  createPost: read2 + '/post',
+  getPostById: read2 + '/post/',
+  getAllPostsByUser: read2 + '/post/by-user/',
+  getAllPostsBySub: read2 + '/post/by-sub-read/',
+  postComment: read2 + '/comment',
+  getAllCommentsForPost: read2 + '/comment/by-post/',
+  getAllCommentsByUser: read2 + '/comment/by-user/',
+  refreshToken: read2 + '/auth/refresh/token',
+  signUp: read2 + '/auth/sign-up',
+  login: read2 + '/auth/sign-in',
+  logout: read2 + '/auth/sign-out',
 
 }

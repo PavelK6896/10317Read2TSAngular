@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { SubReadModel } from "../../../utill/classUtill";
 import { SubReadService } from "../../../service/sub-read.service";
 import { logUtil } from "../../../utill/logUtill";
 
 import { ToastrService } from "ngx-toastr";
+import { SubReadDto } from "../../../utill/interfaceUtill";
 
 @Component({
   selector: 'app-create-subreddit',
@@ -14,7 +14,7 @@ import { ToastrService } from "ngx-toastr";
 })
 export class CreateSubReadComponent {
   createSubredditForm: FormGroup;
-  subredditModel: SubReadModel;
+  subredditModel: SubReadDto;
   title = new FormControl('');
   description = new FormControl('');
 
@@ -28,6 +28,8 @@ export class CreateSubReadComponent {
       description: new FormControl('', Validators.required)
     });
     this.subredditModel = {
+      id: 0,
+      numberOfPosts: 0,
       name: '',
       description: ''
     }
@@ -41,21 +43,19 @@ export class CreateSubReadComponent {
     this.subredditModel.name = this.createSubredditForm.get('title')?.value
     this.subredditModel.description = this.createSubredditForm.get('description')?.value
 
-    this.subredditService.createSubreddit(this.subredditModel)
+    this.subredditService.createSubRead(this.subredditModel)
       .subscribe({
         next: data => {
           logUtil("createSubreddit+ ", data)
-          this.toastrService.success('Created', 'Info', {
+          this.toastrService.success('Created', 'Succeed', {
             timeOut: 500,
           });
           this.router.navigateByUrl('/list-subreddits').then(r => logUtil("r+ ", r));
         }, error: error => {
           logUtil("createSubreddit- ", error)
-          if (error.status == 400) {
-            this.toastrService.error('Value too long', 'Info', {
-              timeOut: 500,
-            });
-          }
+          this.toastrService.error(error.message, 'Error', {
+            timeOut: 2500,
+          });
         }
       })
   }

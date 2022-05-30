@@ -45,7 +45,7 @@ export class ViewSubReadComponent implements OnInit, OnDestroy {
         }
       });
 
-    this.subSubscription = this.subredditService.getSubredditsId(this.subId)
+    this.subSubscription = this.subredditService.getSubReadById(this.subId)
       .subscribe({
         next: data => {
           logUtil("getSubredditsId+ ", data)
