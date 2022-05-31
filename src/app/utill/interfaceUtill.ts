@@ -16,14 +16,18 @@ export interface LoginRequestPayload {
   password: string;
 }
 
-export interface Page {
-  totalPages: number
-  totalElements: number
+export interface Slice {
+  empty: boolean
   first: boolean
   last: boolean
   number: number
   numberOfElements: number
   size: number
+}
+
+export interface Page extends Slice {
+  totalPages: number
+  totalElements: number
 }
 
 
@@ -53,6 +57,18 @@ export interface SubReadDto {
 
 export interface PageSubReadDto extends Page {
   content: SubReadDto[]
+}
+
+export interface CommentsDto {
+  id: number;
+  text: string;
+  postId: number;
+  userName: string;
+  createdDate: string;
+}
+
+export interface SliceCommentsDto extends Slice {
+  content: CommentsDto[]
 }
 
 

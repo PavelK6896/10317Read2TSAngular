@@ -16,21 +16,21 @@ describe('CommentService 7', () => {
 
   it('1 ', () => {
     expect(service).toBeTruthy();
-    let postComment = spyOn(service, 'postComment').and.returnValue(of([]))
-    service.postComment(new CommentPayload())
+    let postComment = spyOn(service, 'createComment').and.returnValue(of([]))
+    service.createComment(new CommentPayload())
     expect(postComment).toHaveBeenCalled()
 
   });
 
   it('2 ', () => {
-    let getAllCommentsForPost = spyOn(service, 'getAllCommentsForPost').and.returnValue(of([]))
-    service.getAllCommentsForPost(1)
+    let getAllCommentsForPost = spyOn(service, 'getSliceCommentsForPost').and.returnValue(of())
+    service.getSliceCommentsForPost(1)
     expect(getAllCommentsForPost).toHaveBeenCalled()
   });
 
   it('3 ', () => {
-    let getAllCommentsByUser = spyOn(service, 'getAllCommentsByUser').and.returnValue(of([]))
-    service.getAllCommentsByUser("")
+    let getAllCommentsByUser = spyOn(service, 'getSliceCommentsByUser').and.returnValue(of())
+    service.getSliceCommentsByUser("")
     expect(getAllCommentsByUser).toHaveBeenCalled()
   });
 });

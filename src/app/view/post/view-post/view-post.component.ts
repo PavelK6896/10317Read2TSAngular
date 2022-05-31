@@ -6,7 +6,7 @@ import { CommentPayload } from "../../../utill/classUtill";
 import { PostService } from "../../../service/post.service";
 import { CommentService } from "../../../service/comment.service";
 import { logUtil } from "../../../utill/logUtill";
-import { PostResponseDto } from "../../../utill/interfaceUtill";
+import { CommentsDto, PostResponseDto } from "../../../utill/interfaceUtill";
 import { AuthService } from "../../../service/auth.service";
 
 @Component({
@@ -23,7 +23,7 @@ export class ViewPostComponent implements OnInit {
   post!: PostResponseDto;
   commentForm: FormGroup;
   commentPayload: CommentPayload;
-  comments!: CommentPayload[];
+  comments!: CommentsDto[];
 
   constructor(private postService: PostService,
               private activatedRoute: ActivatedRoute,
@@ -58,7 +58,7 @@ export class ViewPostComponent implements OnInit {
     if (this.commentPayload.text == null || this.commentPayload.text.trim().length == 0) {
       return
     }
-    this.commentService.postComment(this.commentPayload)
+    this.commentService.createComment(this.commentPayload)
       .subscribe({
         next: data => {
           logUtil("postComment+ ", data)
@@ -86,11 +86,11 @@ export class ViewPostComponent implements OnInit {
 
   private getCommentsForPost() {
     this.loadingComment = false
-    this.commentService.getAllCommentsForPost(this.postId)
+    this.commentService.getSliceCommentsForPost(this.postId)
       .subscribe({
         next: data => {
-          logUtil("getAllCommentsForPost+ ", data)
-          this.comments = data;
+          logUtil("getAllCommentsForPost+ -----------------------", data)
+          this.comments = data.content;
           this.loadingComment = true
         }, error: error => {
           logUtil("getAllCommentsForPost- ", error)

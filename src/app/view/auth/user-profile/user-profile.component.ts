@@ -51,12 +51,12 @@ export class UserProfileComponent implements OnInit, OnDestroy {
         }
       });
     this.loadingComment = false
-    this.commentsSub = this.commentService.getAllCommentsByUser(this.name)
+    this.commentsSub = this.commentService.getSliceCommentsByUser(this.name)
       .subscribe({
         next: data => {
           logUtil("getAllCommentsByUser+ ", data)
-          this.comments = data;
-          this.commentLength = data.length;
+          this.comments = data.content;
+          this.commentLength = data.content.length;
           this.loadingComment = true
         }, error: error => {
           logUtil("getAllCommentsByUser- ", error)
