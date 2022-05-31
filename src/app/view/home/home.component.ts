@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadingPost = false
-    this.getAllPostsSubscription = this.postService.getAllPosts()
+    this.getAllPostsSubscription = this.postService.getPagePosts()
       .subscribe({
         next: data => {
           logUtil("getAllPosts+ ", data)

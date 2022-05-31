@@ -6,7 +6,7 @@ import { ActivatedRoute, ActivatedRouteSnapshot } from "@angular/router";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { of } from "rxjs";
-import { PostResponseDto } from "../../../utill/interfaceUtill";
+import { PagePostResponseDto, PostResponseDto } from "../../../utill/interfaceUtill";
 
 class ActivatedRouteStub {
   snapshot: ActivatedRouteSnapshot;
@@ -57,10 +57,21 @@ describe('UserViewPostComponent 101', () => {
       duration: "string",
       vote: "UP_VOTE",
     }
+    let page: PagePostResponseDto = {
+      content: [p],
+      empty: false,
+      first: false,
+      last: false,
+      number: 0,
+      numberOfElements: 0,
+      size: 0,
+      totalElements: 0,
+      totalPages: 0
+    }
 
     const postsTest = [p];
     let postService = TestBed.inject(PostService)
-    spyOn(postService, 'getAllPostsByUser').and.returnValue(of(postsTest))
+    spyOn(postService, 'getPagePostByUsername').and.returnValue(of(page))
 
 
     component.ngOnInit()

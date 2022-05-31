@@ -48,7 +48,7 @@ describe('HomeComponent 9', () => {
 
     const postsTest = [p];
     let postService = TestBed.inject(PostService)
-    spyOn(postService, 'getAllPosts').and.returnValue(of())
+    spyOn(postService, 'getPagePosts').and.returnValue(of())
 
     component.loadingPost = true
     fixture.detectChanges();

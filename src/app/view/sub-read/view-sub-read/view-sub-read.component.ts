@@ -33,12 +33,12 @@ export class ViewSubReadComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subId = this.activatedRoute.snapshot.params['id'];
-    this.postsSubscription = this.postService.getAllPostsBySub(this.subId)
+    this.postsSubscription = this.postService.getPagePostBySubReadId(this.subId)
       .subscribe({
         next: data => {
           logUtil("getAllPostsBySub+ ", data)
-          this.posts = data;
-          this.postLength = data.length;
+          this.posts = data.content;
+          this.postLength = data.content.length;
           this.loadingPost = true
         }, error: error => {
           logUtil("getAllPostsBySub- ", error)

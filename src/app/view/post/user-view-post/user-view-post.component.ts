@@ -26,12 +26,12 @@ export class UserViewPostComponent implements OnInit {
   ngOnInit(): void {
     this.name = this.activatedRoute.snapshot.params["name"];
     this.loadingPost = false
-    this.postsSubscription = this.postService.getAllPostsByUser(this.name)
+    this.postsSubscription = this.postService.getPagePostByUsername(this.name)
       .subscribe({
         next: data => {
           logUtil("getAllPostsBySub+ ", data)
-          this.posts = data;
-          this.postLength = data.length;
+          this.posts = data.content;
+          this.postLength = data.content.length;
           this.loadingPost = true
         }, error: error => {
           logUtil("getAllPostsBySub- ", error)

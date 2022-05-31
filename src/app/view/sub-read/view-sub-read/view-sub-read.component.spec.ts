@@ -52,7 +52,7 @@ describe('ViewSubReadComponent 21', () => {
 
     let postService = TestBed.inject(PostService)
     let subredditService = TestBed.inject(SubReadService)
-    let spyPostService = spyOn(postService, 'getAllPostsBySub')
+    let spyPostService = spyOn(postService, 'getPagePostBySubReadId')
 
 
     let p: PostResponseDto = {
@@ -68,8 +68,8 @@ describe('ViewSubReadComponent 21', () => {
       vote: "UP_VOTE",
     }
 
-    spyPostService.and.returnValue(of([p]))
-    let spySubredditService = spyOn(subredditService, 'getSubredditsId')
+    spyPostService.and.returnValue(of())
+    let spySubredditService = spyOn(subredditService, 'getSubReadById')
 
     let subredditModel: SubReadDto = {description: "d", id: 1, name: "name", numberOfPosts: 22}
     spySubredditService.and.returnValue(of(subredditModel))

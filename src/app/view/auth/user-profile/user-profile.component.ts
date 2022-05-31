@@ -38,12 +38,12 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.name = this.activatedRoute.snapshot.params["name"];
     this.loadingPost = false
-    this.postsSub = this.postService.getAllPostsByUser(this.name)
+    this.postsSub = this.postService.getPagePostByUsername(this.name)
       .subscribe({
         next: data => {
           logUtil("getAllPostsByUser+ ", data)
-          this.posts = data;
-          this.postLength = data.length;
+          this.posts = data.content;
+          this.postLength = data.content.length;
           this.loadingPost = true
         },
         error: error => {

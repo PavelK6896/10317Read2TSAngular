@@ -14,7 +14,7 @@ export class PostService {
   constructor(private http: HttpClient) {
   }
 
-  getAllPosts(): Observable<PagePostResponseDto> {
+  getPagePosts(): Observable<PagePostResponseDto> {
     return this.http.get<PagePostResponseDto>(urlConfig.getAllPosts);
   }
 
@@ -26,12 +26,12 @@ export class PostService {
     return this.http.get<PostResponseDto>(urlConfig.getPostById + id);
   }
 
-  getAllPostsByUser(name: string): Observable<PostResponseDto[]> {
-    return this.http.get<PostResponseDto[]>(urlConfig.getAllPostsByUser + name);
+  getPagePostByUsername(name: string): Observable<PagePostResponseDto> {
+    return this.http.get<PagePostResponseDto>(urlConfig.getPagePostByUsername + name);
   }
 
-  getAllPostsBySub(subId: number): Observable<PostResponseDto[]> {
-    return this.http.get<PostResponseDto[]>(urlConfig.getAllPostsBySub + subId);
+  getPagePostBySubReadId(subId: number): Observable<PagePostResponseDto> {
+    return this.http.get<PagePostResponseDto>(urlConfig.getPagePostBySubReadId + subId);
   }
 
 

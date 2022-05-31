@@ -56,8 +56,8 @@ describe('UserProfileComponent 5', () => {
   it('2', () => {
     let commentService = TestBed.inject(CommentService)
     let postService = TestBed.inject(PostService)
-    let spyPostService = spyOn(postService, 'getAllPostsByUser').and.returnValue(of([]))
-    let spyCommentService = spyOn(commentService, 'getAllCommentsByUser').and.returnValue(of([]))
+    let spyPostService = spyOn(postService, 'getPagePostByUsername').and.returnValue(of())
+    let spyCommentService = spyOn(commentService, 'getSliceCommentsByUser').and.returnValue(of())
     component.ngOnInit()
     expect(spyPostService).toHaveBeenCalled()
     expect(spyCommentService).toHaveBeenCalled()
