@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from "rxjs";
 import { PostService } from "../../service/post.service";
 import { logUtil } from "../../utill/logUtill";
-import { PostResponseDto } from "../../utill/interfaceUtill";
+import { PagePostResponseDto, PostResponseDto } from "../../utill/interfaceUtill";
 
 
 @Component({
@@ -15,6 +15,7 @@ import { PostResponseDto } from "../../utill/interfaceUtill";
 export class HomeComponent implements OnInit, OnDestroy {
 
   posts: PostResponseDto[] = [];
+  page!: PagePostResponseDto;
   getAllPostsSubscription!: Subscription
   loadingPost: boolean = false
 
@@ -24,11 +25,16 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadingPost = false
-    this.getAllPostsSubscription = this.postService.getPagePosts()
+    this.getAllPostsSubscription = this.getPagePost(0);
+  }
+
+  public getPagePost(number: number) {
+    return this.postService.getPagePosts(number)
       .subscribe({
         next: data => {
           logUtil("getAllPosts+ ", data)
           this.posts = data.content;
+          this.page = data;
           this.loadingPost = true
         }, error: error => {
           logUtil("getAllPosts- ", error)
@@ -42,4 +48,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
+  updatePageData($event: number) {
+    this.getPagePost($event);
+  }
 }

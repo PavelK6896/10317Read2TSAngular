@@ -30,6 +30,7 @@ import { ToastrModule } from "ngx-toastr";
 import { quillModules } from "./config/quillConfig";
 import { QuillModule } from "ngx-quill";
 import { NgbModule, NgbPaginationModule } from "@ng-bootstrap/ng-bootstrap";
+import { PaginationComponent } from './component/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { NgbModule, NgbPaginationModule } from "@ng-bootstrap/ng-bootstrap";
     ViewSubReadComponent,
     PostTopComponent,
     UserViewPostComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,

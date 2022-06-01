@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 
 import { urlConfig } from "../config/urlConfig";
@@ -14,8 +14,10 @@ export class PostService {
   constructor(private http: HttpClient) {
   }
 
-  getPagePosts(): Observable<PagePostResponseDto> {
-    return this.http.get<PagePostResponseDto>(urlConfig.getAllPosts);
+  getPagePosts(number: number): Observable<PagePostResponseDto> {
+    let params = new HttpParams();
+    params = params.append('page', number);
+    return this.http.get<PagePostResponseDto>(urlConfig.getAllPosts, {params: params});
   }
 
   createPost(postPayload: CreatePostPayload): Observable<any> {

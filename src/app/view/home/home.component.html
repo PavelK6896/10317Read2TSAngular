@@ -1,5 +1,6 @@
 <div class="">
-    <div class="row">
+    <app-pagination [page]="page" (updatePage)="updatePageData($event)"></app-pagination>
+    <div class="row mb-4">
         <div class="col-9">
             <div *ngIf="loadingPost; else loadingTemp">
                 <div *ngFor="let post of posts">
@@ -12,6 +13,7 @@
             <app-subreddit-side-bar></app-subreddit-side-bar>
         </div>
     </div>
+    <app-pagination [page]="page" (updatePage)="updatePageData($event)"></app-pagination>
 </div>
 
 <ng-template #loadingTemp>
