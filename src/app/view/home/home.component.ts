@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from "rxjs";
 import { PostService } from "../../service/post.service";
 import { logUtil } from "../../utill/logUtill";
-import { PagePostResponseDto, PostResponseDto } from "../../utill/interfaceUtill";
+import { Page, PagePostResponseDto, PostResponseDto } from "../../utill/interfaceUtill";
 
 
 @Component({
@@ -15,7 +15,7 @@ import { PagePostResponseDto, PostResponseDto } from "../../utill/interfaceUtill
 export class HomeComponent implements OnInit, OnDestroy {
 
   posts: PostResponseDto[] = [];
-  page!: PagePostResponseDto;
+  page!: Page;
   getAllPostsSubscription!: Subscription
   loadingPost: boolean = false
 

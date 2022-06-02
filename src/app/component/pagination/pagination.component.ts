@@ -1,21 +1,15 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { PagePostResponseDto } from "../../utill/interfaceUtill";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Page } from "../../utill/interfaceUtill";
 
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.css']
 })
-export class PaginationComponent implements OnInit {
+export class PaginationComponent {
 
-  @Input() page!: PagePostResponseDto;
+  @Input() page!: Page;
   @Output() updatePage = new EventEmitter<number>();
-
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
 
   updateNumberPage(number: number | undefined) {
     return number == undefined ? number : number + 1
@@ -31,5 +25,9 @@ export class PaginationComponent implements OnInit {
     if (undefined !== number) {
       this.updatePage.emit(number + 1)
     }
+  }
+
+  disabledNext(page: Page) {
+    return page?.number == (page?.totalPages - 1)
   }
 }
