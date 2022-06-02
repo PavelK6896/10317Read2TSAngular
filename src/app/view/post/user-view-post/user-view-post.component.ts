@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PostResponseDto } from "../../../utill/interfaceUtill";
+import { Page, PostResponseDto } from "../../../utill/interfaceUtill";
 import { Subscription } from "rxjs";
 import { logUtil } from "../../../utill/logUtill";
 import { PostService } from "../../../service/post.service";
@@ -17,6 +17,7 @@ export class UserViewPostComponent implements OnInit {
   loadingPost: boolean = false
   name!: string
   postLength!: number
+  pagePost!: Page;
 
   constructor(private postService: PostService,
               private activatedRoute: ActivatedRoute) {
@@ -26,17 +27,27 @@ export class UserViewPostComponent implements OnInit {
   ngOnInit(): void {
     this.name = this.activatedRoute.snapshot.params["name"];
     this.loadingPost = false
-    this.postsSubscription = this.postService.getPagePostByUsername(this.name)
+    this.postsSubscription = this.getPagePost(0)
+  }
+
+
+  public getPagePost(number: number) {
+    return this.postService.getPagePostByUsername(this.name, number)
       .subscribe({
         next: data => {
           logUtil("getAllPostsBySub+ ", data)
           this.posts = data.content;
-          this.postLength = data.content.length;
+          this.postLength = data.totalElements;
           this.loadingPost = true
+          this.pagePost = data
         }, error: error => {
           logUtil("getAllPostsBySub- ", error)
         }
       });
+  }
+
+  updatePageData($event: number) {
+    this.getPagePost($event);
   }
 
 }

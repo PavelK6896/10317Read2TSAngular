@@ -6,7 +6,7 @@ import { CommentPayload } from "../../../utill/classUtill";
 import { PostService } from "../../../service/post.service";
 import { CommentService } from "../../../service/comment.service";
 import { logUtil } from "../../../utill/logUtill";
-import { PostResponseDto } from "../../../utill/interfaceUtill";
+import { Page, PostResponseDto } from "../../../utill/interfaceUtill";
 
 
 @Component({
@@ -21,6 +21,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   loadingComment: boolean = false
   posts!: PostResponseDto[];
   postLength!: number;
+  pagePost!: Page;
 
   comments!: CommentPayload[];
   commentLength!: number;
@@ -38,18 +39,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.name = this.activatedRoute.snapshot.params["name"];
     this.loadingPost = false
-    this.postsSub = this.postService.getPagePostByUsername(this.name)
-      .subscribe({
-        next: data => {
-          logUtil("getAllPostsByUser+ ", data)
-          this.posts = data.content;
-          this.postLength = data.content.length;
-          this.loadingPost = true
-        },
-        error: error => {
-          logUtil("getAllPostsByUser- ", error)
-        }
-      });
+    this.postsSub = this.getPagePost(0);
     this.loadingComment = false
     this.commentsSub = this.commentService.getSliceCommentsByUser(this.name)
       .subscribe({
@@ -63,6 +53,26 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
         }
       });
+  }
+
+  public getPagePost(number: number) {
+    return this.postService.getPagePostByUsername(this.name, number)
+      .subscribe({
+        next: data => {
+          logUtil("getAllPostsByUser+ ", data)
+          this.posts = data.content;
+          this.postLength = data.totalElements;
+          this.pagePost = data
+          this.loadingPost = true
+        },
+        error: error => {
+          logUtil("getAllPostsByUser- ", error)
+        }
+      });
+  }
+
+  updatePageData($event: number) {
+    this.getPagePost($event);
   }
 
   ngOnDestroy(): void {

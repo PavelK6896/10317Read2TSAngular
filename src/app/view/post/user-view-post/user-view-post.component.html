@@ -1,9 +1,10 @@
-<div class="pt-5">
+<div class="">
     <div *ngIf="loadingPost; else loadingTemp">
         <h5>User name: {{name}}<br/>number of posts: {{postLength}}</h5>
         <div *ngFor="let post of posts">
             <app-post-tile [post]="post"></app-post-tile>
         </div>
+        <app-pagination [page]="pagePost" (updatePage)="updatePageData($event)"></app-pagination>
     </div>
 </div>
 

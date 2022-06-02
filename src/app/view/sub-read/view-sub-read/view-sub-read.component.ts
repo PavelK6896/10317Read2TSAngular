@@ -5,7 +5,7 @@ import { SubReadModel } from "../../../utill/classUtill";
 import { PostService } from "../../../service/post.service";
 import { SubReadService } from "../../../service/sub-read.service";
 import { logUtil } from "../../../utill/logUtill";
-import { PostResponseDto } from "../../../utill/interfaceUtill";
+import { Page, PostResponseDto } from "../../../utill/interfaceUtill";
 
 
 @Component({
@@ -21,6 +21,7 @@ export class ViewSubReadComponent implements OnInit, OnDestroy {
   subId!: number;
   postsSubscription!: Subscription
   subSubscription!: Subscription
+  pagePost!: Page;
 
   loadingPost: boolean = false
   loadingSub: boolean = false
@@ -33,17 +34,7 @@ export class ViewSubReadComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subId = this.activatedRoute.snapshot.params['id'];
-    this.postsSubscription = this.postService.getPagePostBySubReadId(this.subId)
-      .subscribe({
-        next: data => {
-          logUtil("getAllPostsBySub+ ", data)
-          this.posts = data.content;
-          this.postLength = data.content.length;
-          this.loadingPost = true
-        }, error: error => {
-          logUtil("getAllPostsBySub- ", error)
-        }
-      });
+    this.postsSubscription = this.getPagePost(0)
 
     this.subSubscription = this.subredditService.getSubReadById(this.subId)
       .subscribe({
@@ -55,6 +46,25 @@ export class ViewSubReadComponent implements OnInit, OnDestroy {
           logUtil("getSubredditsId- ", error)
         }
       })
+  }
+
+  public getPagePost(number: number) {
+    return this.postService.getPagePostBySubReadId(this.subId, number)
+      .subscribe({
+        next: data => {
+          logUtil("getAllPostsBySub+ ", data)
+          this.posts = data.content;
+          this.postLength = data.totalElements;
+          this.loadingPost = true
+          this.pagePost = data
+        }, error: error => {
+          logUtil("getAllPostsBySub- ", error)
+        }
+      });
+  }
+
+  updatePageData($event: number) {
+    this.getPagePost($event);
   }
 
   ngOnDestroy(): void {

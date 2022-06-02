@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { urlConfig } from "../config/urlConfig";
 import { PageSubReadDto, SubReadDto } from "../utill/interfaceUtill";
@@ -12,8 +12,10 @@ export class SubReadService {
   constructor(private http: HttpClient) {
   }
 
-  getPageSubRead(): Observable<PageSubReadDto> {
-    return this.http.get<PageSubReadDto>(urlConfig.getPageSubRead);
+  getPageSubRead(number: number): Observable<PageSubReadDto> {
+    let params = new HttpParams();
+    params = params.append('page', number);
+    return this.http.get<PageSubReadDto>(urlConfig.getPageSubRead, {params: params});
   }
 
   getSubReadById(subId: number): Observable<SubReadDto> {

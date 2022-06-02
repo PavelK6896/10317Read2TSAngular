@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from "rxjs";
 import { PostService } from "../../service/post.service";
 import { logUtil } from "../../utill/logUtill";
-import { Page, PagePostResponseDto, PostResponseDto } from "../../utill/interfaceUtill";
+import { Page, PostResponseDto } from "../../utill/interfaceUtill";
 
 
 @Component({

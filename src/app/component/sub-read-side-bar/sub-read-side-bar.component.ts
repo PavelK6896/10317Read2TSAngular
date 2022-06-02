@@ -19,7 +19,7 @@ export class SubReadSideBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.subredditService.getPageSubRead().subscribe({
+    this.subredditService.getPageSubRead(0).subscribe({
       next: data => {
         logUtil("getAllSubreddits+ ", data)
         if (data.content.length > 3) {

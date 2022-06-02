@@ -14,9 +14,9 @@ export class PostService {
   constructor(private http: HttpClient) {
   }
 
-  getPagePosts(number: number): Observable<PagePostResponseDto> {
+  getPagePosts(numberPage: number): Observable<PagePostResponseDto> {
     let params = new HttpParams();
-    params = params.append('page', number);
+    params = params.append('page', numberPage);
     return this.http.get<PagePostResponseDto>(urlConfig.getAllPosts, {params: params});
   }
 
@@ -28,13 +28,16 @@ export class PostService {
     return this.http.get<PostResponseDto>(urlConfig.getPostById + id);
   }
 
-  getPagePostByUsername(name: string): Observable<PagePostResponseDto> {
-    return this.http.get<PagePostResponseDto>(urlConfig.getPagePostByUsername + name);
+  getPagePostByUsername(name: string, numberPage: number = 0): Observable<PagePostResponseDto> {
+    let params = new HttpParams();
+    params = params.append('page', numberPage);
+    return this.http.get<PagePostResponseDto>(urlConfig.getPagePostByUsername + name, {params: params});
   }
 
-  getPagePostBySubReadId(subId: number): Observable<PagePostResponseDto> {
-    return this.http.get<PagePostResponseDto>(urlConfig.getPagePostBySubReadId + subId);
+  getPagePostBySubReadId(subId: number, numberPage: number = 0): Observable<PagePostResponseDto> {
+    let params = new HttpParams();
+    params = params.append('page', numberPage);
+    return this.http.get<PagePostResponseDto>(urlConfig.getPagePostBySubReadId + subId, {params: params});
   }
-
 
 }

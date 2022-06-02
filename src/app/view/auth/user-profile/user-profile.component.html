@@ -1,7 +1,6 @@
 <div class="">
     <div class="">
-        Welcome <strong>{{name}}</strong>.<br/> You have posted <strong>{{postLength}}</strong> time(s) and commented
-        <strong>{{commentLength}}</strong> time(s).
+        Welcome <strong>{{name}}</strong>.<br/> You have posted <strong>{{postLength}}</strong>.
         You can check your post and comment history below.
     </div>
     <h5>
@@ -12,6 +11,7 @@
             <app-post-tile [post]="post"></app-post-tile>
         </div>
     </div>
+    <app-pagination [page]="pagePost" (updatePage)="updatePageData($event)"></app-pagination>
     <div>
         Your Comments:
     </div>
