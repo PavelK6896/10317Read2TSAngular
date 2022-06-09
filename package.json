@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build prod static": "ng build --prod --build-optimizer=true --baseHref=/api/read2/main/ --deployUrl=/api/read2/main/"
   },
   "private": true,
   "dependencies": {

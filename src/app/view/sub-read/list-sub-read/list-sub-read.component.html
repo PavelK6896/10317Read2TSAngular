@@ -8,6 +8,7 @@
                     <a routerLink="/view-subreddit/{{s.id}}">{{s.name}}</a>
                 </li>
             </ul>
+            <app-pagination [page]="page" (updatePage)="updatePageData($event)"></app-pagination>
         </div>
         <div class="col-3">
             <app-side-bar></app-side-bar>
