@@ -19,6 +19,7 @@ export class CreatePostComponent implements OnInit, OnDestroy {
   subRead!: Array<SubReadModel>;
   getAllSubReadSub!: Subscription
   createPostSub!: Subscription
+  subInput = '';
 
   constructor(private router: Router,
               private postService: PostService,
@@ -82,4 +83,20 @@ export class CreatePostComponent implements OnInit, OnDestroy {
   }
 
 
+  timer!: ReturnType<typeof setTimeout>
+
+  subChange(event: string) {
+    this.timer && clearTimeout(this.timer);
+    this.timer = setTimeout(() => {
+      this.getAllSubReadSub = this.subredditService.getPageSubReadLikeStartsWith(event)
+        .subscribe({
+          next: (data) => {
+            logUtil("getPageSubReadLikeStartsWith+ ", data)
+            this.subRead = data.content;
+          }, error: error => {
+            logUtil("getPageSubReadLikeStartsWith- ", error)
+          }
+        });
+    }, 500);
+  }
 }

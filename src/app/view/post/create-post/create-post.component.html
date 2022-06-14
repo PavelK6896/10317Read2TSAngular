@@ -5,8 +5,14 @@
                 <div class="form-group">
                     <div class="my-2">Create Post</div>
                     <input [formControlName]="'postName'" class="form-control mb-2" placeholder="Title" type="text">
+
+                    <input [ngModel]="subInput" (ngModelChange)="subChange($event)"
+                           [ngModelOptions]="{standalone: true}" class="form-control mb-2"
+                           placeholder="search sub" type="search">
+
                     <select [formControlName]="'subReadName'" class="form-select mb-2" name="sub">
-                        <option selected hidden>Choose here</option>
+                        <option *ngIf="subRead != null && subRead.length > 0" selected
+                                hidden>{{subRead[0].name}}</option>
                         <option *ngFor="let subreddit of subRead">{{subreddit.name}}</option>
                     </select>
                     <div class="form-control my-2">

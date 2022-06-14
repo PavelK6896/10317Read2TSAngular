@@ -25,4 +25,12 @@ export class SubReadService {
   createSubRead(subReadDto: SubReadDto): Observable<SubReadDto> {
     return this.http.post<SubReadDto>(urlConfig.createSubRead, subReadDto);
   }
+
+  getPageSubReadLikeStartsWith(startsWith: string): Observable<PageSubReadDto> {
+    let params = new HttpParams();
+    params = params.append('page', 0);
+    params = params.append('startsWith', startsWith);
+    return this.http.get<PageSubReadDto>(urlConfig.getPageSubReadLikeStartsWith, {params: params});
+  }
+
 }

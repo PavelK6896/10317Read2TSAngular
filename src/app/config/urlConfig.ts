@@ -4,6 +4,7 @@ const read2 = environment.URL + '/api/read2'
 
 export const urlConfig = {
 
+  getPageSubReadLikeStartsWith: read2 + '/sub-read/starts-with',
   getPageSubRead: read2 + '/sub-read',
   getSubReadById: read2 + '/sub-read',
   createSubRead: read2 + '/sub-read',
