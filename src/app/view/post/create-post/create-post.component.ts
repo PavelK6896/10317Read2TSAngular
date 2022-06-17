@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { CreatePostPayload, SubReadModel } from "../../../utill/classUtill";
@@ -36,7 +36,7 @@ export class CreatePostComponent implements OnInit, OnDestroy {
 
     this.createPostForm = new FormGroup({
       postName: new FormControl('', Validators.required),
-      subReadName: new FormControl('', Validators.required),
+      subReadName: new FormControl('', [Validators.required, this.checkSub()]),
       description: new FormControl(null, Validators.required),
     });
 
@@ -87,6 +87,13 @@ export class CreatePostComponent implements OnInit, OnDestroy {
 
   subChange(event: string) {
     this.timer && clearTimeout(this.timer);
+    if (this.subRead) {
+      let subReadCurrent = this.subRead.filter(f => f.name === event);
+      if (subReadCurrent.length === 1) {
+        return
+      }
+    }
+
     this.timer = setTimeout(() => {
       this.getAllSubReadSub = this.subredditService.getPageSubReadLikeStartsWith(event)
         .subscribe({
@@ -99,4 +106,20 @@ export class CreatePostComponent implements OnInit, OnDestroy {
         });
     }, 500);
   }
+
+  private checkSub(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (this.subRead) {
+        if (this.subRead.length === 0) {
+          return {subReadError: 'Sub not choose. Please clear input.'};
+        }
+        const ok = this.subRead.filter(f => f.name === control.value).length === 1
+        return ok ? null : {subReadError: 'Sub not found. Please clear input.'};
+      } else {
+        return {subReadError: 'Sub not found.'}
+      }
+    };
+  }
+
+
 }
