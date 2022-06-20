@@ -1,8 +1,8 @@
 FROM node:16.15.1-alpine AS build
 WORKDIR /usr/src/app
-ADD package.json package-lock.json ./
+ADD ../package.json package-lock.json ./
 RUN npm install
-ADD . .
+ADD .. .
 RUN npm run "build prod static"
 
 ARG deployBuild="https://localhost:8081"
