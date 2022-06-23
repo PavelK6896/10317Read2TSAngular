@@ -6,6 +6,7 @@ import { ToastrService } from "ngx-toastr";
 import { LoginRequestPayload } from "../../../utill/interfaceUtill";
 import { AuthService } from "../../../service/auth.service";
 import { logUtil } from "../../../utill/logUtill";
+import { PropertyService } from "../../../service/property.service";
 
 @Component({
   selector: 'app-login',
@@ -20,11 +21,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   isError!: boolean;
   queryParamsSubscription!: Subscription
   loginSubscription!: Subscription
+  notificationSingUp!: boolean
 
   constructor(private authService: AuthService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
-              private toastrService: ToastrService
+              private toastrService: ToastrService,
+              private propertyService: PropertyService,
   ) {
     logUtil("LoginComponent!")
     this.loginRequestPayload = {
@@ -35,6 +38,13 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
+    this.propertyService.getProperty().subscribe(
+      data => {
+        logUtil("queryParams+ ", data)
+        this.notificationSingUp = data.notificationSingUp
+      }
+    )
+
     this.loginForm = new FormGroup({
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
@@ -43,7 +53,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe({
         next: params => {
           logUtil("queryParams+ ", params)
-          if (params['registered'] !== undefined && params['registered'] === 'true') {
+          if (this.propertyService && params['registered'] !== undefined && params['registered'] === 'true') {
             this.toastrService.success('Sign up Successful');
             this.registerSuccessMessage = 'Please Check your inbox for activation email '
               + 'activate your account before you Login!';

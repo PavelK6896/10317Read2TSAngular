@@ -82,3 +82,9 @@ export enum VoteType {
   DOWN_VOTE = 'DOWN_VOTE'
 }
 
+export interface PropertyDto {
+  notificationSingUp: boolean;
+  notificationComment: boolean;
+  host: string;
+  bigValidators: boolean;
+}

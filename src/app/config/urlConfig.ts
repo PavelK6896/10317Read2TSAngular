@@ -21,5 +21,6 @@ export const urlConfig = {
   signUp: read2 + '/auth/sign-up',
   login: read2 + '/auth/sign-in',
   logout: read2 + '/auth/sign-out',
+  property: read2 + '/property',
 
 }
