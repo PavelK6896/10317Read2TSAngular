@@ -55,6 +55,11 @@ export class TokenInterceptor implements HttpInterceptor {
       this.isTokenRefreshing = true;
       this.refreshTokenSubject.next(null);
       return this.authService.refreshToken().pipe(
+        catchError(error => {
+            this.authService.logout()
+            throw new Error(error.error)
+          }
+        ),
         switchMap((refreshTokenResponse: LoginResponse) => {
           logUtil("refreshTokenResponse!pipe+2+ ", refreshTokenResponse)
           this.isTokenRefreshing = false;
@@ -62,10 +67,13 @@ export class TokenInterceptor implements HttpInterceptor {
           return next.handle(this.addToken(req, refreshTokenResponse.authenticationToken));
         })
       )
-
-
     } else {
       return this.refreshTokenSubject.pipe(
+        catchError(error => {
+            this.authService.logout()
+            throw new Error(error.error)
+          }
+        ),
         filter(result => result !== null),
         take(1),
         switchMap(() => {
