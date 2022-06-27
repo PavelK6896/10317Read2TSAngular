@@ -33,6 +33,7 @@ describe('SubReadSideBarComponent 14', () => {
     let subredditService = TestBed.inject(SubReadService)
     let spyService = spyOn(subredditService, 'getPageSubRead')
     let page: PageSubReadDto = {
+      empty: false,
       first: false, last: false, number: 0, numberOfElements: 0, size: 0, totalElements: 0, totalPages: 0,
       content: []
     }

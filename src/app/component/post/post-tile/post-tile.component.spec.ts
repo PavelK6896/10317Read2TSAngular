@@ -12,10 +12,20 @@ import { logUtil } from "../../../utill/logUtill";
 class RouterStub {
   navigate(path: string[]) {
     logUtil("path- ", path)
+    return new Promise<boolean>((resolve, reject) => {
+      setTimeout(() => {
+        resolve(true);
+      }, 10);
+    })
   }
 
   navigateByUrl(url: string) {
     logUtil("url- ", url)
+    return new Promise<boolean>((resolve, reject) => {
+      setTimeout(() => {
+        resolve(true);
+      }, 10);
+    })
   }
 }
 
@@ -56,13 +66,13 @@ describe('PostTileComponent 12', () => {
     fixture.detectChanges();
   });
 
-  it('1 ', () => {
+  it('1', () => {
     expect(component).toBeTruthy();
   });
 
   it('2 click loginButton', () => {
     let router = TestBed.inject(Router)
-    let loginButton = fixture.debugElement.query(By.css('.loginButton'))
+    let loginButton = fixture.debugElement.query(By.css('#post-btn'))
     let spyRouter = spyOn(router, 'navigateByUrl')
     loginButton.triggerEventHandler('click', null)
     expect(spyRouter).toHaveBeenCalledWith('/view-post/' + p.id)

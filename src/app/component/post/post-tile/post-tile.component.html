@@ -12,7 +12,7 @@
                 <button class="btn btn-secondary" routerLink="/view-post/{{post.id}}">comments</button>
                 <span>&nbsp;{{post.commentCount}}</span>
             </div>
-            <button class="btn btn-secondary" (click)="goToPost(post.id)">post</button>
+            <button id="post-btn" class="btn btn-secondary" (click)="goToPost(post.id)">post</button>
         </div>
     </div>
 </div>
