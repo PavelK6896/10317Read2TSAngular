@@ -5,7 +5,6 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { CommentPayload } from "../../../utill/classUtill";
 import { PostService } from "../../../service/post.service";
 import { CommentService } from "../../../service/comment.service";
-import { logUtil } from "../../../utill/logUtill";
 import { CommentsDto, PostResponseDto } from "../../../utill/interfaceUtill";
 import { AuthService } from "../../../service/auth.service";
 
@@ -30,7 +29,6 @@ export class ViewPostComponent implements OnInit {
               private router: Router,
               private commentService: CommentService,
               private authService: AuthService) {
-    logUtil("ViewPostComponent!")
     this.postId = this.activatedRoute.snapshot.params['id'];
     this.commentForm = new FormGroup({
       text: new FormControl('',
@@ -50,7 +48,7 @@ export class ViewPostComponent implements OnInit {
   postComment() {
 
     if (!this.authService.isLoggedIn()) {
-      this.router.navigateByUrl('login').then(r => logUtil("r- ", r))
+      this.router.navigateByUrl('login')
       return;
     }
 
@@ -61,11 +59,10 @@ export class ViewPostComponent implements OnInit {
     this.commentService.createComment(this.commentPayload)
       .subscribe({
         next: data => {
-          logUtil("postComment+ ", data)
           this.commentForm.get('text')?.setValue(null);
           this.getCommentsForPost();
         }, error: error => {
-          logUtil("postComment- ", error)
+          console.error(error)
         }
       })
   }
@@ -75,11 +72,10 @@ export class ViewPostComponent implements OnInit {
     this.postService.getPostById(this.postId)
       .subscribe({
         next: data => {
-          logUtil("getPostById+ ", data)
           this.post = data;
           this.loadingPost = true;
         }, error: error => {
-          logUtil("getPostById- ", error)
+          console.error(error)
         }
       });
   }
@@ -89,11 +85,10 @@ export class ViewPostComponent implements OnInit {
     this.commentService.getSliceCommentsForPost(this.postId)
       .subscribe({
         next: data => {
-          logUtil("getAllCommentsForPost+ -----------------------", data)
           this.comments = data.content;
           this.loadingComment = true
         }, error: error => {
-          logUtil("getAllCommentsForPost- ", error)
+          console.error(error)
         }
       });
   }

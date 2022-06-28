@@ -15,6 +15,8 @@ class RouterStub {
   navigateByUrl(url: string) {
     logUtil("url+ ", url)
   }
+
+  catch!: () => {}
 }
 
 class ActivatedRouteStub {
@@ -67,24 +69,15 @@ describe('LoginComponent 2', () => {
     expect(component).toBeTruthy();
   });
 
-  it('2 activatedRoute queryParams registered', () => {
-    let toast: ToastrServiceSub = TestBed.inject(ToastrServiceSub)
-    let route: ActivatedRouteStub = TestBed.inject(ActivatedRouteStub)
-    let spyToast = spyOn(toast, 'success')
-    route.push({registered: 'true'})
-    expect(spyToast).toHaveBeenCalledWith('Sign up Successful')
-  });
-
   it('3 login', () => {
     component.loginForm = new FormGroup({
       username: new FormControl('dd', Validators.required),
       password: new FormControl('dd', Validators.required)
     });
     fixture.detectChanges();
-
     let auth = TestBed.inject(AuthService)
     let spyAuth = spyOn(auth, 'login').and.returnValue(of(true))
-    let loginButton = fixture.debugElement.query(By.css('.loginButton'))
+    let loginButton = fixture.debugElement.query(By.css('#login-btn'))
     let router = fixture.debugElement.injector.get(Router)
     let spyRouter = spyOn(router, 'navigateByUrl')
 

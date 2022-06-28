@@ -3,7 +3,6 @@ import { Router } from "@angular/router";
 import { PostResponseDto, VoteDto, VoteType } from "../../utill/interfaceUtill";
 import { VoteService } from "../../service/vote.service";
 import { AuthService } from "../../service/auth.service";
-import { logUtil } from "../../utill/logUtill";
 
 @Component({
   selector: 'app-vote-button',
@@ -24,7 +23,6 @@ export class VoteButtonComponent {
               private authService: AuthService,
               private router: Router
   ) {
-    logUtil("VoteButtonComponent!")
     this.voteDto = {
       voteType: undefined,
       postId: undefined
@@ -33,7 +31,7 @@ export class VoteButtonComponent {
 
   upVotePost() {
     if (!this.authService.isLoggedIn()) {
-      this.router.navigateByUrl('login').then(r => logUtil("r+ ", r))
+      this.router.navigateByUrl('login')
       return;
     }
     this.voteDto.voteType = VoteType.UP_VOTE;
@@ -43,7 +41,7 @@ export class VoteButtonComponent {
 
   downVotePost() {
     if (!this.authService.isLoggedIn()) {
-      this.router.navigateByUrl('login').then(r => logUtil("r+ ", r))
+      this.router.navigateByUrl('login')
       return;
     }
     this.voteDto.voteType = VoteType.DOWN_VOTE;
@@ -56,10 +54,9 @@ export class VoteButtonComponent {
     this.voteService.vote(this.voteDto)
       .subscribe({
         next: (data) => {
-          logUtil("vote+ ", data)
           this.post.voteCount = data
         }, error: error => {
-          logUtil("vote- ", error)
+          console.error(error)
         }
       });
   }

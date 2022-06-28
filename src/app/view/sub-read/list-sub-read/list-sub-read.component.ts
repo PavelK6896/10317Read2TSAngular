@@ -3,7 +3,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from "rxjs";
 import { SubReadModel } from "../../../utill/classUtill";
 import { SubReadService } from "../../../service/sub-read.service";
-import { logUtil } from "../../../utill/logUtill";
 import { Page } from "../../../utill/interfaceUtill";
 
 @Component({
@@ -18,8 +17,8 @@ export class ListSubReadComponent implements OnInit, OnDestroy {
   page!: Page;
 
   constructor(private subredditService: SubReadService) {
-    logUtil("ListSubReadComponent!")
   }
+
 
   ngOnInit() {
     this.getAllSubredditsSubscription = this.getPagePost(0);
@@ -29,11 +28,10 @@ export class ListSubReadComponent implements OnInit, OnDestroy {
     return this.subredditService.getPageSubRead(number)
       .subscribe({
         next: data => {
-          logUtil("getAllSubreddits+ ", data)
           this.subreddits = data.content;
           this.page = data
         }, error: error => {
-          logUtil("getAllSubreddits- ", error)
+          console.error(error)
         }
       })
   }

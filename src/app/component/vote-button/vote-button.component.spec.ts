@@ -9,16 +9,13 @@ import { PostResponseDto } from "../../utill/interfaceUtill";
 import { Router } from "@angular/router";
 import { By } from "@angular/platform-browser";
 import { of } from "rxjs";
-import { logUtil } from "../../utill/logUtill";
 
 
 class RouterStub {
   navigate(path: string[]) {
-    logUtil("path+ ", path)
   }
 
   navigateByUrl(url: string) {
-    logUtil("url+ ", url)
   }
 }
 
@@ -70,9 +67,9 @@ describe('VoteButtonComponent 15', () => {
     let spy = spyOn(router, 'navigateByUrl')
     component.upVotePost()
     expect(spy).toHaveBeenCalledWith('login')
-    let debugElement = fixture.debugElement.query(By.css('.votecount'));
+    let debugElement = fixture.debugElement.query(By.css('#vote-count'));
     expect(debugElement.nativeElement.textContent).toContain(p.voteCount)
-    let debugElement2 = fixture.debugElement.query(By.css('.downvote'));
+    let debugElement2 = fixture.debugElement.query(By.css('#down-vote'));
     debugElement2.triggerEventHandler('click', null)
     expect(spy).toHaveBeenCalledWith('login')
   });

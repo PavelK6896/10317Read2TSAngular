@@ -3,11 +3,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SideBarComponent } from './side-bar.component';
 import { Router } from "@angular/router";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
-import { logUtil } from "../../utill/logUtill";
 
 class RouterStub {
-  navigateByUrl(url: string) {
-    logUtil("url+ ", url)
+  navigateByUrl(url: string): Promise<boolean> {
+    return new Promise((r, re) => {
+      r(true)
+    })
   }
 }
 
@@ -35,7 +36,7 @@ describe('SideBarComponent 13', () => {
 
   it('1 fun', () => {
     expect(component).toBeTruthy();
-    let router = TestBed.inject(Router);
+    let router = fixture.debugElement.injector.get(Router)
     let spyRouter1 = spyOn(router, 'navigateByUrl')
     component.goToCreatePost()
     expect(spyRouter1).toHaveBeenCalledWith('/create-post')
