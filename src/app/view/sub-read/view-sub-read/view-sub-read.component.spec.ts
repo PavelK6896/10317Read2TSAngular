@@ -79,13 +79,13 @@ describe('ViewSubReadComponent 21', () => {
     component.loadingPost = true
     fixture.detectChanges();
 
-    expect(spyPostService).toHaveBeenCalledWith(subId)
+    expect(spyPostService).toHaveBeenCalledWith(subId, 0)
     expect(spySubredditService).toHaveBeenCalledWith(subId)
-    expect(component.subId).toBe(subId)
+    expect(component.subId).toEqual(subId)
 
     let debugElement = fixture.debugElement.query(By.css('h5'));
     expect(debugElement).not.toBeNull()
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('app-post-tile')).not.toBe(null);
+    expect(compiled.querySelector('app-post-tile')).toBeNull()
   });
 });

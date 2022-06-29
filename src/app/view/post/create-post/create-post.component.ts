@@ -43,10 +43,9 @@ export class CreatePostComponent implements OnInit, OnDestroy {
     this.getAllSubReadSub = this.subredditService.getPageSubRead(0)
       .subscribe({
         next: (data) => {
-          logUtil("getAllSubreddits+ ", data)
           this.subRead = data.content;
         }, error: error => {
-          logUtil("getAllSubreddits- ", error)
+          console.log(error)
         }
       });
 
@@ -69,19 +68,16 @@ export class CreatePostComponent implements OnInit, OnDestroy {
     this.createPostSub = this.postService.createPost(this.postPayload)
       .subscribe({
         next: (data) => {
-          logUtil("createPost+ ", data)
-          this.router.navigateByUrl('').then(r => logUtil("r+ ", r));
-
+          this.router.navigateByUrl('');
         }, error: error => {
-          logUtil("createPost- ", error)
+          console.log(error)
         }
       })
   }
 
   discardPost() {
-    this.router.navigateByUrl('').then(r => logUtil("r- ", r));
+    this.router.navigateByUrl('');
   }
-
 
   timer!: ReturnType<typeof setTimeout>
 
@@ -98,10 +94,9 @@ export class CreatePostComponent implements OnInit, OnDestroy {
       this.getAllSubReadSub = this.subredditService.getPageSubReadLikeStartsWith(event)
         .subscribe({
           next: (data) => {
-            logUtil("getPageSubReadLikeStartsWith+ ", data)
             this.subRead = data.content;
           }, error: error => {
-            logUtil("getPageSubReadLikeStartsWith- ", error)
+            console.log(error)
           }
         });
     }, 500);

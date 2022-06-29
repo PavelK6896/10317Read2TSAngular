@@ -4,7 +4,6 @@ import { ActivatedRoute } from "@angular/router";
 import { SubReadModel } from "../../../utill/classUtill";
 import { PostService } from "../../../service/post.service";
 import { SubReadService } from "../../../service/sub-read.service";
-import { logUtil } from "../../../utill/logUtill";
 import { Page, PostResponseDto } from "../../../utill/interfaceUtill";
 
 
@@ -29,7 +28,6 @@ export class ViewSubReadComponent implements OnInit, OnDestroy {
   constructor(private postService: PostService,
               private subredditService: SubReadService,
               private activatedRoute: ActivatedRoute) {
-    logUtil("ViewSubReadComponent!")
   }
 
   ngOnInit(): void {
@@ -39,11 +37,10 @@ export class ViewSubReadComponent implements OnInit, OnDestroy {
     this.subSubscription = this.subredditService.getSubReadById(this.subId)
       .subscribe({
         next: data => {
-          logUtil("getSubredditsId+ ", data)
           this.sub = data
           this.loadingSub = true
         }, error: error => {
-          logUtil("getSubredditsId- ", error)
+          console.log(error)
         }
       })
   }
@@ -52,13 +49,12 @@ export class ViewSubReadComponent implements OnInit, OnDestroy {
     return this.postService.getPagePostBySubReadId(this.subId, number)
       .subscribe({
         next: data => {
-          logUtil("getAllPostsBySub+ ", data)
           this.posts = data.content;
           this.postLength = data.totalElements;
           this.loadingPost = true
           this.pagePost = data
         }, error: error => {
-          logUtil("getAllPostsBySub- ", error)
+          console.log(error)
         }
       });
   }
