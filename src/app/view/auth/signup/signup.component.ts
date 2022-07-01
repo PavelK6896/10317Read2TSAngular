@@ -5,7 +5,6 @@ import { ToastrService } from "ngx-toastr";
 import { Subscription } from "rxjs";
 import { SignupRequestPayload } from "../../../utill/interfaceUtill";
 import { AuthService } from "../../../service/auth.service";
-import { logUtil } from "../../../utill/logUtill";
 import { PropertyService } from "../../../service/property.service";
 
 @Component({
@@ -27,7 +26,6 @@ export class SignupComponent implements OnInit, OnDestroy {
               private toastrService: ToastrService,
               private propertyService: PropertyService,
   ) {
-    logUtil("SignupComponent!")
     this.signUpRequestPayload = {
       username: '',
       email: '',
@@ -38,7 +36,6 @@ export class SignupComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.propertyService.getProperty().subscribe(
       data => {
-        logUtil("queryParams+ ", data)
         this.notificationSingUp = data.notificationSingUp
         this.bigValidators = data.bigValidators
       }
@@ -80,11 +77,9 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.signUpSubscription = this.authService.signUp(this.signUpRequestPayload)
       .subscribe({
         next: data => {
-          logUtil("signUp+ ", data)
           this.toastrService.success('success');
-          this.router.navigate(['/login'], {queryParams: {registered: 'true'}}).then(r => logUtil("r+ ", r));
+          this.router.navigate(['/login'], {queryParams: {registered: 'true'}});
         }, error: error => {
-          logUtil("signUp- ", error)
           this.toastrService.error(error.error);
         }
       });

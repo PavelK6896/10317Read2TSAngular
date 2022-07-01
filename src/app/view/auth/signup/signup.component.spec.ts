@@ -10,22 +10,19 @@ import { By } from "@angular/platform-browser";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { AuthService } from "../../../service/auth.service";
-import { logUtil } from "../../../utill/logUtill";
+
 
 class RouterStub {
   navigate(commands: any[], extras?: NavigationExtras) {
-    logUtil("commands+ ", commands)
-    logUtil("extras+ ", extras)
   }
 }
 
 class ToastrServiceSub {
   success(message?: string) {
-    logUtil("message+ ", message)
+
   }
 
   error(message?: string) {
-    logUtil("message+ ", message)
   }
 }
 
@@ -78,7 +75,7 @@ describe('SignupComponent 4', () => {
     let spyToastrService = spyOn(toastrService, 'success')
     let spyRouter = spyOn(router, 'navigate')
 
-    let debugElement = fixture.debugElement.query(By.css('.sign-up'));
+    let debugElement = fixture.debugElement.query(By.css('#sing-up-btn'));
     fixture.detectChanges();
     debugElement.triggerEventHandler('click', null)
 
