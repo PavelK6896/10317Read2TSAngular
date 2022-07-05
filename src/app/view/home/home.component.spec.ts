@@ -5,7 +5,7 @@ import { of } from "rxjs";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { PostService } from "../../service/post.service";
-import { PostResponseDto } from "../../utill/interfaceUtill";
+import { PagePostResponseDto, PostResponseDto } from "../../utill/interfaceUtill";
 
 describe('HomeComponent 9', () => {
   let component: HomeComponent;
@@ -45,10 +45,14 @@ describe('HomeComponent 9', () => {
       duration: "string",
       vote: "UP_VOTE",
     }
+    let pagePost1: PagePostResponseDto = {
+      empty: false, first: false, last: false, number: 0, numberOfElements: 0, size: 0, totalElements: 0, totalPages: 0,
+      content: [p]
+    }
 
     const postsTest = [p];
     let postService = TestBed.inject(PostService)
-    spyOn(postService, 'getPagePosts').and.returnValue(of())
+    spyOn(postService, 'getPagePosts').and.returnValue(of(pagePost1))
 
     component.loadingPost = true
     fixture.detectChanges();

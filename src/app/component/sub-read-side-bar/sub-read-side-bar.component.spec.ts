@@ -5,7 +5,7 @@ import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { of } from "rxjs";
 import { SubReadService } from "../../service/sub-read.service";
-import { PageSubReadDto } from "../../utill/interfaceUtill";
+import { PageSubReadDto, SubReadDto } from "../../utill/interfaceUtill";
 
 describe('SubReadSideBarComponent 14', () => {
   let component: SubReadSideBarComponent;
@@ -32,11 +32,18 @@ describe('SubReadSideBarComponent 14', () => {
     expect(component).toBeTruthy();
     let subredditService = TestBed.inject(SubReadService)
     let spyService = spyOn(subredditService, 'getPageSubRead')
-    let page: PageSubReadDto = {
+    let page: PageSubReadDto;
+    let sub1: SubReadDto = {
+      id: 1,
+      name: "name",
+      description: "d",
+      numberOfPosts: 1
+    }
+    page = {
       empty: false,
       first: false, last: false, number: 0, numberOfElements: 0, size: 0, totalElements: 0, totalPages: 0,
-      content: []
-    }
+      content: [sub1, sub1, sub1, sub1, sub1,]
+    };
     let pageSubReadDtoObservable = of(page);
     spyService.and.returnValues(pageSubReadDtoObservable)
     component.ngOnInit()
