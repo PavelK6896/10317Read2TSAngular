@@ -44,16 +44,14 @@ describe('ViewSubReadComponent 21', () => {
     fixture.detectChanges();
   });
 
-  it('1', () => {
+  it('1 create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('2', () => {
-
+  it('2 get post by sub', () => {
     let postService = TestBed.inject(PostService)
     let subredditService = TestBed.inject(SubReadService)
     let spyPostService = spyOn(postService, 'getPagePostBySubReadId')
-
 
     let p: PostResponseDto = {
       id: 1,

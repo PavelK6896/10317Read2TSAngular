@@ -7,7 +7,7 @@
                 </div>
                 <div class="col-11">
                     <app-post-top [post]="post" class="p-1"></app-post-top>
-                    <div class="p-1">Title: {{post.postName}}
+                    <div class="p-1" id="post-title">Title: {{post.postName}}
                     </div>
                     <div class="p-1">
                         <quill-view-html [content]="post.description"></quill-view-html>

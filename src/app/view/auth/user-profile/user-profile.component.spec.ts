@@ -53,7 +53,7 @@ describe('UserProfileComponent 5', () => {
     expect(component).toBeDefined();
   });
 
-  it('2', () => {
+  it('2 get post by user, get comment by user', () => {
     let commentService = TestBed.inject(CommentService)
     let postService = TestBed.inject(PostService)
     let spyPostService = spyOn(postService, 'getPagePostByUsername').and.returnValue(of())

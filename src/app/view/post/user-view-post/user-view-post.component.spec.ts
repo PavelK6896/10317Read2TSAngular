@@ -43,7 +43,7 @@ describe('UserViewPostComponent 101', () => {
     expect(component).toBeTruthy();
   });
 
-  it('2', () => {
+  it('2 get post by user', () => {
 
     let p: PostResponseDto = {
       id: 1,
@@ -72,14 +72,10 @@ describe('UserViewPostComponent 101', () => {
     const postsTest = [p];
     let postService = TestBed.inject(PostService)
     spyOn(postService, 'getPagePostByUsername').and.returnValue(of(page))
-
-
     component.ngOnInit()
     expect(component.posts).toEqual(postsTest)
-
     component.loadingPost = true
     fixture.detectChanges();
-
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('app-post-tile')).not.toBe(null);
   });

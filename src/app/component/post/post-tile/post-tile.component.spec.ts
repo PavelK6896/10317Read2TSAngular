@@ -66,7 +66,7 @@ describe('PostTileComponent 12', () => {
     fixture.detectChanges();
   });
 
-  it('1', () => {
+  it('1 create', () => {
     expect(component).toBeTruthy();
   });
 

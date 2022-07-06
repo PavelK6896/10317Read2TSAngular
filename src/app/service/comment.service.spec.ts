@@ -14,7 +14,7 @@ describe('CommentService 7', () => {
     service = TestBed.inject(CommentService);
   });
 
-  it('1 ', () => {
+  it('1 create', () => {
     expect(service).toBeTruthy();
     let postComment = spyOn(service, 'createComment').and.returnValue(of([]))
     service.createComment(new CommentPayload())
@@ -22,13 +22,13 @@ describe('CommentService 7', () => {
 
   });
 
-  it('2 ', () => {
+  it('2 get for post', () => {
     let getAllCommentsForPost = spyOn(service, 'getSliceCommentsForPost').and.returnValue(of())
     service.getSliceCommentsForPost(1)
     expect(getAllCommentsForPost).toHaveBeenCalled()
   });
 
-  it('3 ', () => {
+  it('3 get by user', () => {
     let getAllCommentsByUser = spyOn(service, 'getSliceCommentsByUser').and.returnValue(of())
     service.getSliceCommentsByUser("")
     expect(getAllCommentsByUser).toHaveBeenCalled()

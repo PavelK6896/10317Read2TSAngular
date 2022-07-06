@@ -75,7 +75,7 @@ describe('ViewPostComponent 11', () => {
     component.loadingComment = true
     fixture.detectChanges();
 
-    let username = fixture.debugElement.query(By.css('.post-text')).nativeElement.innerText
+    let username = fixture.debugElement.query(By.css('#post-title')).nativeElement.innerText
     expect(username).toBe('Title: ' + p.userName)
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('app-vote-button')).not.toBe(null);

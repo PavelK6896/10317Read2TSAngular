@@ -19,7 +19,7 @@ describe('PaginationComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('1 should create', () => {
     expect(component).toBeTruthy();
   });
 });
