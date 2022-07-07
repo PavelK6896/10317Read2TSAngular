@@ -23,6 +23,6 @@ RUN for f in $files; do \
        done
 
 
-# docker build -t read2-front-v3 -f read2.build3.Dockerfile .
+# docker build -t read2-front-v3 -f ops/read2.build3.Dockerfile .
 # docker run --name read2-front-v3-c1 -d read2-front-v3 sleep 900
 # docker cp read2-front-v3-c1:/source/10317Read2TSAngular-master/dist/. dist

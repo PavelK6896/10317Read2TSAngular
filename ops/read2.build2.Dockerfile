@@ -17,6 +17,6 @@ RUN for f in $files; do \
        done
 
 
-# docker build -t read2-front-v2 -f read2.build2.Dockerfile .
+# docker build -t read2-front-v2 -f ops/read2.build2.Dockerfile .
 # docker run --name read2-front-v2-c1 -d read2-front-v2 sleep 900
 # docker cp read2-front-v2-c1:/usr/src/app/dist/. dist
