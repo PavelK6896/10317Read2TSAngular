@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { catchError, filter, switchMap, take } from 'rxjs/operators';
-import { AuthService } from "../service/auth.service";
-import { logUtil } from "../utill/logUtill";
-import { LoginResponse } from "../utill/interfaceUtill";
+import {Injectable} from '@angular/core';
+import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {catchError, filter, switchMap, take} from 'rxjs/operators';
+import {AuthService} from "../service/auth.service";
+import {logUtil} from "../utill/logUtill";
+import {LoginResponse} from "../utill/interfaceUtill";
 
 @Injectable({
   providedIn: 'root'
@@ -43,7 +43,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
   addToken(req: HttpRequest<any>, jwtToken: any) {
     let httpRequest = req.clone({
-      headers: req.headers.set('Authorization', 'Bearer ' + jwtToken)
+      headers: req.headers.set('Authorization', jwtToken)
     });
     logUtil("addToken+ ", httpRequest.headers.get('Authorization')?.substring(0, 5))
     return httpRequest;

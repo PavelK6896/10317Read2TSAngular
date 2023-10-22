@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Page } from "../../utill/interfaceUtill";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Page} from "../../utill/interfaceUtill";
 
 @Component({
   selector: 'app-pagination',
@@ -28,6 +28,6 @@ export class PaginationComponent {
   }
 
   disabledNext(page: Page) {
-    return page?.number == (page?.totalPages - 1)
+    return page?.number >= (page?.totalPages - 1)
   }
 }

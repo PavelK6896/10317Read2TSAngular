@@ -103,5 +103,8 @@
       }
     }
   },
-  "defaultProject": "10317-read2-ts-angular"
+  "defaultProject": "10317-read2-ts-angular",
+  "cli": {
+    "analytics": false
+  }
 }
